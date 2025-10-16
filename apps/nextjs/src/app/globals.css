@@ -86,9 +86,23 @@
 
 /* Button animations */
 .btn-primary {
-  @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200;
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  transition-property: all;
+  transition-duration: 200ms;
+}
+
+.btn-primary:hover {
+  background-color: hsl(var(--primary) / 0.9);
 }
 
 .btn-secondary {
-  @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-all duration-200;
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+  transition-property: all;
+  transition-duration: 200ms;
+}
+
+.btn-secondary:hover {
+  background-color: hsl(var(--secondary) / 0.8);
 }
