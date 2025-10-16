@@ -2,8 +2,13 @@
 
 import { motion } from 'framer-motion'
 import { Github, Twitter, Mail, Heart } from 'lucide-react'
+import { type Locale } from '../lib/i18n'
 
-export default function Footer() {
+interface FooterProps {
+  locale?: Locale
+}
+
+export default function Footer({ locale }: FooterProps) {
   return (
     <footer className="bg-gray-50 border-t border-gray-200">
       <div className="container mx-auto px-4 py-12">

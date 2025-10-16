@@ -1,8 +1,13 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { type Locale } from '../lib/i18n'
 
-export default function CTASection() {
+interface CTASectionProps {
+  locale?: Locale
+}
+
+export default function CTASection({ locale }: CTASectionProps) {
   return (
     <motion.div 
       initial={{ opacity: 0, y: 40 }}
