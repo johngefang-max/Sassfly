@@ -1,109 +1,40 @@
-import { ClerkProvider } from "@clerk/nextjs";
-import { Inter as FontSans } from "next/font/google";
-import localFont from "next/font/local";
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import './globals.css'
+import ErrorBoundary from '@/components/ErrorBoundary'
 
-import "~/styles/globals.css";
+const inter = Inter({ subsets: ['latin'] })
 
-import { NextDevtoolsProvider } from "@next-devtools/core";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-
-import { cn } from "@saasfly/ui";
-import { Toaster } from "@saasfly/ui/toaster";
-
-import { TailwindIndicator } from "~/components/tailwind-indicator";
-import { ThemeProvider } from "~/components/theme-provider";
-import { i18n } from "~/config/i18n-config";
-import { siteConfig } from "~/config/site";
-
-// import { Suspense } from "react";
-// import { PostHogPageview } from "~/config/providers";
-
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
-
-// Font files can be colocated inside of `pages`
-const fontHeading = localFont({
-  src: "../styles/fonts/CalSans-SemiBold.woff2",
-  variable: "--font-heading",
-});
-
-export function generateStaticParams() {
-  return i18n.locales.map((locale) => ({ lang: locale }));
-}
-
-export const metadata = {
-  title: {
-    default: siteConfig.name,
-    template: `%s | ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  keywords: [
-    "Next.js",
-    "Shadcn ui",
-    "Sass",
-    "Fast ",
-    "Simple ",
-    "Easy",
-    "Cloud Native",
-  ],
-  authors: [
-    {
-      name: "saasfly",
-    },
-  ],
-  creator: "Saasfly",
+export const metadata: Metadata = {
+  title: 'Image Prompt - Create Better AI Art',
+  description: 'Inspire ideas, Enhance image prompt, Create masterpieces',
+  keywords: ['AI art', 'image prompt', 'AI generator', 'creative tools'],
+  authors: [{ name: 'ImagePrompt.org' }],
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: siteConfig.url,
-    title: siteConfig.name,
-    description: siteConfig.description,
-    siteName: siteConfig.name,
+    title: 'Image Prompt - Create Better AI Art',
+    description: 'Inspire ideas, Enhance image prompt, Create masterpieces',
+    type: 'website',
+    locale: 'en_US',
   },
-  icons: {
-    icon: "/logo.svg",
-    // shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Image Prompt - Create Better AI Art',
+    description: 'Inspire ideas, Enhance image prompt, Create masterpieces',
   },
-  metadataBase: new URL("https://show.saasfly.io/"),
-  // manifest: `${siteConfig.url}/site.webmanifest`,
-};
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
-      <html lang="en" suppressHydrationWarning>
-        <head />
-        {/*<Suspense>*/}
-        {/*  <PostHogPageview />*/}
-        {/*</Suspense>*/}
-        <body
-          className={cn(
-            "min-h-screen bg-background font-sans antialiased",
-            fontSans.variable,
-            fontHeading.variable,
-          )}
-        >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem={false}
-          >
-            <NextDevtoolsProvider>{children}</NextDevtoolsProvider>
-            <Analytics />
-            <SpeedInsights />
-            <Toaster />
-            <TailwindIndicator />
-          </ThemeProvider>
-        </body>
-      </html>
-    </ClerkProvider>
-  );
+    <html lang="en">
+      <body className={inter.className}>
+        <ErrorBoundary>
+          {children}
+        </ErrorBoundary>
+      </body>
+    </html>
+  )
 }

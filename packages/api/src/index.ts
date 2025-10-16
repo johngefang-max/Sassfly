@@ -7,6 +7,8 @@ export { createTRPCContext } from "./trpc";
 export { t } from "./trpc";
 
 export type { AppRouter } from "./root";
+export { appRouter } from "./root";
+export { edgeRouter } from "./edge";
 
 /**
  * Inference helpers for input types

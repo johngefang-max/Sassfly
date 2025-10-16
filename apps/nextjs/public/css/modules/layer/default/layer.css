@@ -1,0 +1,115 @@
+/* Layer CSS - Modal and Dialog Styles */
+.layer-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layer-modal {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.layer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.layer-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.layer-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layer-close:hover {
+  color: #333;
+}
+
+.layer-content {
+  color: #666;
+  line-height: 1.6;
+}
+
+.layer-footer {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.layer-btn {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.layer-btn-primary {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.layer-btn:hover {
+  opacity: 0.9;
+}
+
+/* Animation */
+.layer-container {
+  animation: layerFadeIn 0.3s ease-out;
+}
+
+.layer-modal {
+  animation: layerSlideIn 0.3s ease-out;
+}
+
+@keyframes layerFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes layerSlideIn {
+  from { 
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

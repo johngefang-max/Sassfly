@@ -34,8 +34,11 @@
     "packages/*",
     "tooling/*"
   ],
-  "packageManager": "bun@v1.1.10",
+  "packageManager": "bun@1.0.0",
   "dependencies": {
-    "@clerk/nextjs": "^6.20.0"
+    "@clerk/nextjs": "^6.20.0",
+    "styled-jsx": "^5.1.7",
+    "tailwindcss-animate": "^1.0.7",
+    "watchpack": "^2.4.4"
   }
 }
