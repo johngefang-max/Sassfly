@@ -2,12 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { Sparkles, Wand2, Eye, Palette } from 'lucide-react'
-import Header from '../../components/Header'
-import FeatureCard from '../../components/FeatureCard'
-import CTASection from '../../components/CTASection'
-import Footer from '../../components/Footer'
-import AnimatedSection from '../../components/AnimatedSection'
-import { useResponsive } from '../../hooks/useResponsive'
+import { Header, FeatureCard, CTASection, Footer, AnimatedSection } from '../../components'
+import { useResponsive } from '../../hooks'
 import { getTranslations, type Locale } from '../../lib/i18n'
 
 export default function LocalePage({
