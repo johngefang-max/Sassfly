@@ -3,7 +3,7 @@
 import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Upload, Image as ImageIcon, Download, Copy, Sparkles } from 'lucide-react'
-import { getTranslations, Locale } from '../../../lib/i18n'
+import { getTranslations, type Locale } from '../../../lib/i18n.ts'
 
 interface ImageToPromptPageProps {
   params: {

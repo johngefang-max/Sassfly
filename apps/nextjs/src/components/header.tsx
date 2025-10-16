@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Menu, X, Search, User, ChevronDown, Globe } from 'lucide-react'
-import { getTranslations, type Locale } from '../lib/i18n'
+import { getTranslations, type Locale } from '../lib/i18n.ts'
 import Link from 'next/link'
 
 interface HeaderProps {
