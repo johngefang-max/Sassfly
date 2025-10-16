@@ -1,0 +1,8 @@
+{
+  "github": {
+    "silent": true
+  },
+  "installCommand": "cd .. && bun install",
+  "buildCommand": "bun run build",
+  "outputDirectory": ".next"
+}
