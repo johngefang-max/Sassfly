@@ -1,7 +1,17 @@
-export { default as Header } from './Header';
-export { default as FeatureCard } from './FeatureCard';
-export { default as CTASection } from './CTASection';
-export { default as Footer } from './Footer';
-export { default as AnimatedSection } from './AnimatedSection';
-export { default as ErrorBoundary } from './ErrorBoundary';
-export { default as LoadingSpinner } from './LoadingSpinner';
+import Header from './Header';
+import FeatureCard from './FeatureCard';
+import CTASection from './CTASection';
+import Footer from './Footer';
+import AnimatedSection from './AnimatedSection';
+import ErrorBoundary from './ErrorBoundary';
+import LoadingSpinner from './LoadingSpinner';
+
+export {
+  Header,
+  FeatureCard,
+  CTASection,
+  Footer,
+  AnimatedSection,
+  ErrorBoundary,
+  LoadingSpinner
+};
