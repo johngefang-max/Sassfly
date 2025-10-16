@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.20.0",
+    "@saasfly/ui": "workspace:*",
+    "@saasfly/auth": "workspace:*",
+    "@saasfly/common": "workspace:*",
     "next": "14.2.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

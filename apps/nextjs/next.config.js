@@ -5,6 +5,7 @@ const nextConfig = {
   images: {
     domains: ['localhost'],
   },
+  transpilePackages: ['@saasfly/ui', '@saasfly/auth', '@saasfly/common'],
 }
 
 module.exports = nextConfig
