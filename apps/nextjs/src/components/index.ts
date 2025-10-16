@@ -1,7 +1,7 @@
-export { default as Header } from './Header.js';
-export { default as FeatureCard } from './FeatureCard.js';
-export { default as CTASection } from './CTASection.js';
-export { default as Footer } from './Footer.js';
-export { default as AnimatedSection } from './AnimatedSection.js';
-export { default as ErrorBoundary } from './ErrorBoundary.js';
-export { default as LoadingSpinner } from './LoadingSpinner.js';
+export { default as Header } from './Header.tsx';
+export { default as FeatureCard } from './FeatureCard.tsx';
+export { default as CTASection } from './CTASection.tsx';
+export { default as Footer } from './Footer.tsx';
+export { default as AnimatedSection } from './AnimatedSection.tsx';
+export { default as ErrorBoundary } from './ErrorBoundary.tsx';
+export { default as LoadingSpinner } from './LoadingSpinner.tsx';
