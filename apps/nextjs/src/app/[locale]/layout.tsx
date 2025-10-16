@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import '../globals.css'
-import ErrorBoundary from '@/components/ErrorBoundary'
-import { locales, type Locale } from '@/lib/i18n'
+import ErrorBoundary from '../../components/ErrorBoundary'
+import { locales, type Locale } from '../../lib/i18n'
 import { notFound } from 'next/navigation'
 
 const inter = Inter({ subsets: ['latin'] })

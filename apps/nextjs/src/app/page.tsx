@@ -13,12 +13,12 @@ import {
   User,
   ChevronDown
 } from 'lucide-react'
-import Header from '@/components/Header'
-import FeatureCard from '@/components/FeatureCard'
-import CTASection from '@/components/CTASection'
-import Footer from '@/components/Footer'
-import AnimatedSection from '@/components/AnimatedSection'
-import { useResponsive } from '@/hooks/useResponsive'
+import Header from '../components/Header'
+import FeatureCard from '../components/FeatureCard'
+import CTASection from '../components/CTASection'
+import Footer from '../components/Footer'
+import AnimatedSection from '../components/AnimatedSection'
+import { useResponsive } from '../hooks/useResponsive'
 
 export default function Home() {
   const { isMobile, isTablet, isDesktop } = useResponsive()
