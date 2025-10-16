@@ -51,10 +51,13 @@
 
 @layer base {
   * {
-    @apply border-[hsl(var(--border))];
+    /* Avoid using @apply with arbitrary values; set border color directly */
+    border-color: hsl(var(--border));
   }
   body {
-    @apply bg-background text-foreground;
+    /* Use CSS variables directly to avoid Tailwind @apply validation issues in CI */
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
   }
 }
 
