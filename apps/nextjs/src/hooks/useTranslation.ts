@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { getTranslations, type Locale, defaultLocale } from '../lib/i18n.ts';
+import { getTranslations, type Locale, defaultLocale } from '../lib/i18n';
 
 export function useTranslation() {
   const router = useRouter();
