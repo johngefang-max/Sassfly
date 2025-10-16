@@ -305,17 +305,27 @@ export async function POST(request: NextRequest) {
 
   } catch (error) {
     console.error('=== API 发生严重错误 ===');
-    console.error('错误类型:', error?.constructor?.name);
-    console.error('错误消息:', error?.message);
-    console.error('错误堆栈:', error?.stack);
+    const errorType = error instanceof Error ? error.constructor.name : typeof error;
+    const errorMessage =
+      error instanceof Error
+        ? error.message
+        : typeof error === 'string'
+        ? error
+        : (error && typeof error === 'object' && 'message' in error && typeof (error as any).message === 'string')
+        ? (error as any).message
+        : '未知错误';
+    const errorStack = error instanceof Error ? error.stack : undefined;
+    console.error('错误类型:', errorType);
+    console.error('错误消息:', errorMessage);
+    console.error('错误堆栈:', errorStack);
     console.error('完整错误对象:', error);
     console.error('=== 错误信息结束 ===');
     
     return NextResponse.json(
       { 
         error: 'Internal server error',
-        details: error?.message || '未知错误',
-        type: error?.constructor?.name || '未知类型'
+        details: errorMessage,
+        type: errorType || '未知类型'
       },
       { status: 500 }
     );

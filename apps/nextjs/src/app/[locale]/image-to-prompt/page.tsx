@@ -198,10 +198,19 @@ export default function ImageToPromptPage({ params }: ImageToPromptPageProps) {
           }
         } catch (error) {
           console.error('=== 前端 API 调用失败 ===');
-          console.error('错误类型:', error?.constructor?.name);
-          console.error('错误消息:', error?.message);
+          const errorType = error instanceof Error ? error.constructor.name : typeof error;
+          const errorMessage =
+            error instanceof Error
+              ? error.message
+              : typeof error === 'string'
+              ? error
+              : (error && typeof error === 'object' && 'message' in error && typeof (error as any).message === 'string')
+              ? (error as any).message
+              : '请检查连接后重试';
+          console.error('错误类型:', errorType);
+          console.error('错误消息:', errorMessage);
           console.error('完整错误:', error);
-          setGeneratedPrompt(`网络错误: ${error?.message || '请检查连接后重试'}`)
+          setGeneratedPrompt(`网络错误: ${errorMessage}`)
         }
         
         setIsGenerating(false)
