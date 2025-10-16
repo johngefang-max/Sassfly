@@ -1,22 +1,24 @@
 import type { NextRequest } from "next/server";
-import {initTRPC, TRPCError} from "@trpc/server";
-import {auth, currentUser, getAuth} from "@clerk/nextjs/server";
+import { initTRPC, TRPCError } from "@trpc/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@saasfly/auth";
 import { ZodError } from "zod";
 
 import { transformer } from "./transformer";
 
 interface CreateContextOptions {
   req?: NextRequest;
-  auth?: any;
 }
-type AuthObject = ReturnType<typeof getAuth>;
-// see: https://clerk.com/docs/references/nextjs/trpc
+
+// 创建 tRPC 上下文
 export const createTRPCContext = async (opts: {
   headers: Headers;
-  auth: AuthObject;
 }) => {
+  const session = await getServerSession(authOptions);
+  
   return {
-    userId: opts.auth.userId,
+    userId: session?.user?.id,
+    user: session?.user,
     ...opts,
   };
 };
@@ -46,7 +48,12 @@ const isAuthed = t.middleware(({ next, ctx }) => {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
   // Make ctx.userId non-nullable in protected procedures
-  return next({ ctx: { userId: ctx.userId } });
+  return next({ 
+    ctx: { 
+      userId: ctx.userId,
+      user: ctx.user 
+    } 
+  });
 });
 
 
