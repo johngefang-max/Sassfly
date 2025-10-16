@@ -10,7 +10,8 @@ interface HeaderProps {
   locale?: Locale
 }
 
-export default function Header({ locale = 'en' }: HeaderProps) {
+// 明确声明组件类型
+const Header = ({ locale = 'en' }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [showLanguageSwitch, setShowLanguageSwitch] = useState(false)
   const t = getTranslations(locale)
@@ -145,3 +146,5 @@ export default function Header({ locale = 'en' }: HeaderProps) {
     </header>
   )
 }
+
+export default Header;
