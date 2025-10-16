@@ -5,5 +5,5 @@
   "buildCommand": "if [ -d apps/nextjs ]; then cd apps/nextjs; fi; bun run build",
   "outputDirectory": "apps/nextjs/.next",
   "installCommand": "bun install",
-  "framework": null
+  "framework": "nextjs"
 }
