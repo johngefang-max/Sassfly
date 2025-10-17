@@ -1,33 +1,25 @@
 import { getServerSession, NextAuthOptions, User } from "next-auth";
-import { KyselyAdapter } from "@auth/kysely-adapter";
 import GoogleProvider from "next-auth/providers/google";
-
+import GitHubProvider from "next-auth/providers/github";
 import type { GetServerSidePropsContext, NextApiRequest, NextApiResponse } from "next";
-
-import { db } from "./db";
 import { env } from "./env.mjs";
 
-type UserId = string;
-type IsAdmin = boolean;
-
+// 扩展 Session/JWT 字段
 declare module "next-auth" {
   interface Session {
-    user: User & {
-      id: UserId;
-      isAdmin: IsAdmin;
-    };
+    user: User & { id: string; isAdmin: boolean };
   }
 }
 
 declare module "next-auth" {
   interface JWT {
-    isAdmin: IsAdmin;
+    isAdmin: boolean;
   }
 }
 
+// 动态注册 Provider
 const providers: NextAuthOptions["providers"] = [];
 
-// 启用 Google 登录（仅在配置了环境变量时）
 if (env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET) {
   providers.push(
     GoogleProvider({
@@ -38,65 +30,52 @@ if (env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET) {
   );
 }
 
-// 已移除 GitHub 登录
+if (env.GITHUB_CLIENT_ID && env.GITHUB_CLIENT_SECRET) {
+  providers.push(
+    GitHubProvider({
+      clientId: env.GITHUB_CLIENT_ID,
+      clientSecret: env.GITHUB_CLIENT_SECRET,
+    })
+  );
+}
 
 export const authOptions: NextAuthOptions = {
-  session: {
-    strategy: "jwt",
-  },
-  pages: {
-    signIn: "/login",
-  },
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  adapter: KyselyAdapter(db),
+  session: { strategy: "jwt" },
+  pages: { signIn: "/login" },
   providers,
   callbacks: {
     session({ token, session }) {
-      if (token) {
-        if (session.user) {
-          session.user.id = token.id as string;
-          session.user.name = token.name;
-          session.user.email = token.email;
-          session.user.image = token.picture;
-          session.user.isAdmin = token.isAdmin as boolean;
-        }
+      if (token && session.user) {
+        session.user.id = (token.id as string) ?? (token.sub as string);
+        session.user.name = token.name;
+        session.user.email = token.email;
+        session.user.image = token.picture;
+        session.user.isAdmin = (token.isAdmin as boolean) ?? false;
       }
       return session;
     },
     async jwt({ token, user }) {
-      const email = token?.email ?? "";
-      const dbUser = await db
-        .selectFrom("User")
-        .where("email", "=", email)
-        .selectAll()
-        .executeTakeFirst();
-      if (!dbUser) {
-        if (user) {
-          token.id = user?.id;
-        }
-        return token;
-      }
+      const emailFromToken = token?.email ?? "";
+      const email = user?.email ?? emailFromToken;
       let isAdmin = false;
       if (env.ADMIN_EMAIL) {
         const adminEmails = env.ADMIN_EMAIL.split(",");
-        if (email) {
-          isAdmin = adminEmails.includes(email);
-        }
+        if (email) isAdmin = adminEmails.includes(email);
       }
-      return {
-        id: dbUser.id,
-        name: dbUser.name,
-        email: dbUser.email,
-        picture: dbUser.image,
-        isAdmin: isAdmin,
-      };
+      if (user) {
+        token.id = (user.id as string) ?? (token.sub as string);
+        token.name = user.name ?? token.name;
+        token.email = user.email ?? token.email;
+        token.picture = user.image ?? token.picture;
+      }
+      token.isAdmin = isAdmin;
+      return token;
     },
   },
   debug: env.IS_DEBUG === "true",
 };
 
-// Use it in server contexts
+// Server 端使用
 export function auth(
   ...args:
     | [GetServerSidePropsContext["req"], GetServerSidePropsContext["res"]]

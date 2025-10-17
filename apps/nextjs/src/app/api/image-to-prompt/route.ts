@@ -42,10 +42,40 @@ export async function POST(request: NextRequest) {
 
     // 检查环境变量
     if (!COZE_TOKEN) {
-      console.error('错误: COZE_API_KEY 环境变量未设置');
+      console.error('错误: COZE_API_KEY 环境变量未设置，返回本地占位提示词以便前端测试');
+      // 在本地无密钥的情况下，构造一个可读的占位提示词，保证前端交互不报错
+      const validPromptTypes = ['normal', 'midjourney', 'flux', 'stableDiffusion'];
+      const safeType = validPromptTypes.includes(promptType) ? promptType : 'normal';
+      const titleDesc = language === 'zh' ? '### 图片描述' : '### Image Description';
+      const titleExample = language === 'zh' ? '### 提示词示例（本地占位）' : '### Prompt Example (Local Fallback)';
+      const typeLine =
+        safeType === 'midjourney'
+          ? (language === 'zh'
+              ? '风格：Midjourney；参数：--ar 1:1 --stylize 250'
+              : 'Style: Midjourney; params: --ar 1:1 --stylize 250')
+          : safeType === 'stableDiffusion'
+          ? (language === 'zh'
+              ? '风格：Stable Diffusion；权重：1.0；质量：high'
+              : 'Style: Stable Diffusion; weights: 1.0; quality: high')
+          : safeType === 'flux'
+          ? (language === 'zh'
+              ? '风格：Flux；技术参数：cfg 7，steps 25'
+              : 'Style: Flux; technical params: cfg 7, steps 25')
+          : (language === 'zh'
+              ? '风格：通用；尽量详细描述主体、构图、光线、色调'
+              : 'Style: General; describe subject, composition, lighting, tone in detail');
+
+      const fallbackPrompt = [
+        titleDesc,
+        userQuery || getDefaultDescription(language),
+        '',
+        titleExample,
+        typeLine
+      ].join('\n');
+
       return NextResponse.json(
-        { error: 'COZE_API_KEY environment variable is not set' },
-        { status: 500 }
+        { success: true, prompt: fallbackPrompt, source: 'local_fallback' },
+        { status: 200 }
       );
     }
 

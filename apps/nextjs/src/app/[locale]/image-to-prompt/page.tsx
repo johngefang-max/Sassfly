@@ -52,7 +52,7 @@ export default function ImageToPromptPage({ params }: ImageToPromptPageProps) {
   const aiModels = getAiModels(t)
   const [selectedImage, setSelectedImage] = useState<File | null>(null)
   const [imagePreview, setImagePreview] = useState<string>('')
-  const [selectedModel, setSelectedModel] = useState('general')
+  const [selectedModel, setSelectedModel] = useState('normal')
   const [selectedLanguage, setSelectedLanguage] = useState('en')
   const [generatedPrompt, setGeneratedPrompt] = useState('')
   const [isGenerating, setIsGenerating] = useState(false)
