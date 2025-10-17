@@ -20,7 +20,8 @@ export const env = createEnv({
     IS_DEBUG: z.string().optional(),
   },
   client: {
-    NEXT_PUBLIC_APP_URL: z.string().min(1),
+    // 客户端可选：当前项目未强制使用该变量，避免因未配置导致构建失败
+    NEXT_PUBLIC_APP_URL: z.string().url().optional(),
   },
   runtimeEnv: {
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
