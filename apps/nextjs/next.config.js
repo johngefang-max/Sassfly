@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Force server/SSR output to avoid accidental static export
+  output: 'standalone',
   reactStrictMode: true,
   swcMinify: true,
   images: {

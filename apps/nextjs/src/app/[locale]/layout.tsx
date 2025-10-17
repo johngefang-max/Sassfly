@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import '../globals.css'
 import { ErrorBoundary } from '../../components'
 import { locales, type Locale } from '../../lib/i18n'
 import { notFound } from 'next/navigation'
@@ -51,13 +50,12 @@ export default function LocaleLayout({
     notFound()
   }
 
+  // In nested layouts, do NOT render <html> or <body> tags.
+  // Those should only exist in the root layout (app/layout.tsx).
+  // Rendering them here can cause build/export errors.
   return (
-    <html lang={locale}>
-      <body className={inter.className}>
-        <ErrorBoundary>
-          {children}
-        </ErrorBoundary>
-      </body>
-    </html>
+    <ErrorBoundary>
+      {children}
+    </ErrorBoundary>
   )
 }
