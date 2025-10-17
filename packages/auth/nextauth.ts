@@ -1,9 +1,6 @@
 import { getServerSession, NextAuthOptions, User } from "next-auth";
 import { KyselyAdapter } from "@auth/kysely-adapter";
 import GitHubProvider from "next-auth/providers/github";
-import EmailProvider from "next-auth/providers/email";
-
-import { MagicLinkEmail, resend, siteConfig } from "@saasfly/common";
 
 import type { GetServerSidePropsContext, NextApiRequest, NextApiResponse } from "next";
 
@@ -40,42 +37,7 @@ if (env.GITHUB_CLIENT_ID && env.GITHUB_CLIENT_SECRET) {
   );
 }
 
-if (env.RESEND_API_KEY && env.RESEND_FROM) {
-  providers.push(
-    EmailProvider({
-      sendVerificationRequest: async ({ identifier, url }) => {
-        const user = await db
-          .selectFrom("User")
-          .select(["name", "emailVerified"])
-          .where("email", "=", identifier)
-          .executeTakeFirst();
-        const userVerified = !!user?.emailVerified;
-        const authSubject = userVerified
-          ? `Sign-in link for ${(siteConfig as { name: string }).name}`
-          : "Activate your account";
-
-        try {
-          await resend.emails.send({
-            from: env.RESEND_FROM,
-            to: identifier,
-            subject: authSubject,
-            react: MagicLinkEmail({
-              firstName: user?.name ?? "",
-              actionUrl: url,
-              mailType: userVerified ? "login" : "register",
-              siteName: (siteConfig as { name: string }).name,
-            }),
-            headers: {
-              "X-Entity-Ref-ID": new Date().getTime() + "",
-            },
-          });
-        } catch (error) {
-          console.log(error);
-        }
-      },
-    })
-  );
-}
+// 已移除 EmailProvider，仅保留 GitHub 登录
 
 export const authOptions: NextAuthOptions = {
   session: {
