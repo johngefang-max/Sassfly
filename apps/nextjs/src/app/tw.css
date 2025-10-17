@@ -1,0 +1,9 @@
+/*
+ * 注意：此文件是占位文件，保证 `import './tw.css'` 在未运行 build:css 时也能正常解析。
+ * 在生产构建（npm run build）中，脚本会使用 Tailwind CLI 根据根配置生成真实的压缩产物覆盖此文件。
+ * 如果你在本地开发中不需要单独的 tw.css，可以仅依赖 globals.css；保留该文件可避免 CI/Preview 环境偶发的缺失问题。
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
