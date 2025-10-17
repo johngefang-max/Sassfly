@@ -2,5 +2,6 @@
   "github": {
     "silent": true
   },
-  "installCommand": "cd .. && bun install"
+  "installCommand": "cd .. && bun install",
+  "buildCommand": "npm run build"
 }

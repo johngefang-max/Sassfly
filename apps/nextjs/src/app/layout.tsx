@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+// 预编译的 Tailwind CSS（通过 build:css 生成），确保在 CI/Vercel 环境样式稳定
+import './tw.css'
 import { ErrorBoundary } from '../components'
 // Switched authentication from Clerk to NextAuth; ClerkProvider removed.
 
