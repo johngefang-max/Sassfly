@@ -28,23 +28,20 @@ declare module "next-auth" {
   }
 }
 
-export const authOptions: NextAuthOptions = {
-  session: {
-    strategy: "jwt",
-  },
-  pages: {
-    signIn: "/login",
-  },
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  adapter: KyselyAdapter(db),
+const providers: NextAuthOptions["providers"] = [];
 
-  providers: [
+if (env.GITHUB_CLIENT_ID && env.GITHUB_CLIENT_SECRET) {
+  providers.push(
     GitHubProvider({
       clientId: env.GITHUB_CLIENT_ID,
       clientSecret: env.GITHUB_CLIENT_SECRET,
       httpOptions: { timeout: 15000 },
-    }),
+    })
+  );
+}
+
+if (env.RESEND_API_KEY && env.RESEND_FROM) {
+  providers.push(
     EmailProvider({
       sendVerificationRequest: async ({ identifier, url }) => {
         const user = await db
@@ -68,8 +65,6 @@ export const authOptions: NextAuthOptions = {
               mailType: userVerified ? "login" : "register",
               siteName: (siteConfig as { name: string }).name,
             }),
-            // Set this to prevent Gmail from threading emails.
-            // More info: https://resend.com/changelog/custom-email-headers
             headers: {
               "X-Entity-Ref-ID": new Date().getTime() + "",
             },
@@ -78,8 +73,21 @@ export const authOptions: NextAuthOptions = {
           console.log(error);
         }
       },
-    }),
-  ],
+    })
+  );
+}
+
+export const authOptions: NextAuthOptions = {
+  session: {
+    strategy: "jwt",
+  },
+  pages: {
+    signIn: "/login",
+  },
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
+  adapter: KyselyAdapter(db),
+  providers,
   callbacks: {
     session({ token, session }) {
       if (token) {

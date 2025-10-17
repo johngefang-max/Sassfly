@@ -24,20 +24,22 @@ export default function CTASection({ locale }: CTASectionProps) {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-200 shadow-lg"
-          >
-            Get Started for Free
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="border-2 border-purple-600 text-purple-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-purple-50 transition-colors"
-          >
-            View Examples
-          </motion.button>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <a
+              href={`/${locale ?? 'en'}/image-to-prompt`}
+              className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-200 shadow-lg"
+            >
+              Get Started for Free
+            </a>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <a
+              href={`/${locale ?? 'en'}`}
+              className="inline-block border-2 border-purple-600 text-purple-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-purple-50 transition-colors"
+            >
+              View Examples
+            </a>
+          </motion.div>
         </div>
 
         <div className="text-center">

@@ -1,7 +1,7 @@
-// import NextAuth from "next-auth/next";
+import NextAuth from "next-auth";
 import { authOptions } from "@saasfly/auth";
 
 // 将 NextAuth 挂载到 App Router 的 /api/auth/*
-// const handler = NextAuth(authOptions);
+const handler = NextAuth(authOptions);
 
-// export { handler as GET, handler as POST };
+export { handler as GET, handler as POST };

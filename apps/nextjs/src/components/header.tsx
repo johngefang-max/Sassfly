@@ -55,14 +55,14 @@ const Header = ({ locale = 'en' }: HeaderProps) => {
               <button className="flex items-center text-gray-700 hover:text-purple-600 transition-colors">
                 {t.tools} <ChevronDown className="w-4 h-4 ml-1" />
               </button>
-              <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600">{t.imageToPrompt}</a>
-                <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600">{t.magicEnhance}</a>
-                <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600">{t.aiDescribe}</a>
-                <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600">{t.aiGenerator}</a>
+              <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <Link href={`/${locale}/image-to-prompt`} className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600">{t.imageToPrompt}</Link>
+                <Link href={`/${locale}/magic-enhance`} className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600">{t.magicEnhance}</Link>
+                <Link href={`/${locale}/ai-describe`} className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600">{t.aiDescribe}</Link>
+                <Link href={`/${locale}/ai-image-generator`} className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600">{t.aiGenerator}</Link>
               </div>
             </div>
-            <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors">{t.pricing}</a>
+            <Link href={`/${locale}/pricing`} className="text-gray-700 hover:text-purple-600 transition-colors">{t.pricing}</Link>
           </div>
 
           {/* Right Side Actions */}
@@ -100,9 +100,9 @@ const Header = ({ locale = 'en' }: HeaderProps) => {
             <button className="p-2 text-gray-600 hover:text-purple-600 transition-colors">
               <User className="w-5 h-5" />
             </button>
-            <button className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors">
+            <Link href="/login" className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors">
               {t.login}
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -123,11 +123,12 @@ const Header = ({ locale = 'en' }: HeaderProps) => {
             className="md:hidden mt-4 py-4 border-t border-gray-200"
           >
             <div className="flex flex-col space-y-4">
-              <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors">Home</a>
-              <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors">Inspiration</a>
-              <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors">Tutorials</a>
-              <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors">Tools</a>
-              <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors">Pricing</a>
+              <Link href={`/${locale}`} className="text-gray-700 hover:text-purple-600 transition-colors">{t.home}</Link>
+              <Link href={`/${locale}/image-to-prompt`} className="text-gray-700 hover:text-purple-600 transition-colors">{t.imageToPrompt}</Link>
+              <Link href={`/${locale}/magic-enhance`} className="text-gray-700 hover:text-purple-600 transition-colors">{t.magicEnhance}</Link>
+              <Link href={`/${locale}/ai-describe`} className="text-gray-700 hover:text-purple-600 transition-colors">{t.aiDescribe}</Link>
+              <Link href={`/${locale}/ai-image-generator`} className="text-gray-700 hover:text-purple-600 transition-colors">{t.aiGenerator}</Link>
+              <Link href={`/${locale}/pricing`} className="text-gray-700 hover:text-purple-600 transition-colors">{t.pricing}</Link>
               <div className="flex items-center space-x-4 pt-4 border-t border-gray-200">
                 <button className="p-2 text-gray-600 hover:text-purple-600 transition-colors">
                   <Search className="w-5 h-5" />
@@ -135,9 +136,9 @@ const Header = ({ locale = 'en' }: HeaderProps) => {
                 <button className="p-2 text-gray-600 hover:text-purple-600 transition-colors">
                   <User className="w-5 h-5" />
                 </button>
-                <button className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors">
+                <Link href="/login" className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors">
                   Login
-                </button>
+                </Link>
               </div>
             </div>
           </motion.div>

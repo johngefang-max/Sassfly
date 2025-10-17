@@ -56,12 +56,12 @@ export default function LocalePage({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+            <a href={`/${locale}/image-to-prompt`} className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105">
               {t.tryNow}
-            </button>
-            <button className="border-2 border-purple-600 text-purple-600 px-8 py-3 rounded-full font-semibold hover:bg-purple-600 hover:text-white transition-all duration-300">
+            </a>
+            <a href={`/${locale}`} className="inline-block border-2 border-purple-600 text-purple-600 px-8 py-3 rounded-full font-semibold hover:bg-purple-600 hover:text-white transition-all duration-300">
               {t.tutorials}
-            </button>
+            </a>
           </motion.div>
         </AnimatedSection>
 
@@ -79,16 +79,22 @@ export default function LocalePage({
               icon={<Wand2 className="w-8 h-8" />}
               title={t.magicEnhance}
               description={t.magicEnhanceDesc}
+              href="/magic-enhance"
+              locale={locale}
             />
             <FeatureCard
               icon={<Eye className="w-8 h-8" />}
               title={t.aiDescribe}
               description={t.aiDescribeDesc}
+              href="/ai-describe"
+              locale={locale}
             />
             <FeatureCard
               icon={<Palette className="w-8 h-8" />}
               title={t.aiGenerator}
               description={t.aiGeneratorDesc}
+              href="/ai-image-generator"
+              locale={locale}
             />
           </div>
         </AnimatedSection>

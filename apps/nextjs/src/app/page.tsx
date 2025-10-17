@@ -14,6 +14,7 @@ import {
   ChevronDown
 } from 'lucide-react'
 import { Header, FeatureCard, CTASection, Footer, AnimatedSection } from '../components'
+import Link from 'next/link'
 import { useResponsive } from '../hooks'
 
 export default function Home() {
@@ -38,20 +39,16 @@ export default function Home() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors"
-            >
-              Try it now!
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="border border-purple-600 text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-50 transition-colors"
-            >
-              Tutorials
-            </motion.button>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link href="/en/image-to-prompt" className="inline-block bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors">
+                Try it now!
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link href="/en" className="inline-block border border-purple-600 text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-50 transition-colors">
+                Tutorials
+              </Link>
+            </motion.div>
           </div>
         </AnimatedSection>
 
@@ -64,21 +61,29 @@ export default function Home() {
             icon={<Image className="w-8 h-8 text-purple-600" />}
             title="Image to Prompt"
             description="Convert image to Prompt to generate your own image"
+            href="/image-to-prompt"
+            locale="en"
           />
           <FeatureCard
             icon={<Wand2 className="w-8 h-8 text-purple-600" />}
             title="Magic Enhance"
             description="Transform simple text into detailed descriptive image prompt"
+            href="/magic-enhance"
+            locale="en"
           />
           <FeatureCard
             icon={<Eye className="w-8 h-8 text-purple-600" />}
             title="AI Describe Image"
             description="Let AI help you understand and analyze any image in detail"
+            href="/ai-describe"
+            locale="en"
           />
           <FeatureCard
             icon={<Sparkles className="w-8 h-8 text-purple-600" />}
             title="AI Image Generator"
             description="Transform your image prompt into stunning visuals with AI-powered generation"
+            href="/ai-image-generator"
+            locale="en"
           />
         </AnimatedSection>
 

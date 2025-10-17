@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Github, Twitter, Mail, Heart } from 'lucide-react'
+import Link from 'next/link'
 import { type Locale } from '../lib/i18n'
 
 interface FooterProps {
@@ -54,10 +55,10 @@ export default function Footer({ locale }: FooterProps) {
           <div>
             <h3 className="font-semibold text-gray-900 mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-600 hover:text-purple-600 transition-colors">Home</a></li>
+              <li><Link href={`/${locale ?? 'en'}`} className="text-gray-600 hover:text-purple-600 transition-colors">Home</Link></li>
               <li><a href="#" className="text-gray-600 hover:text-purple-600 transition-colors">About</a></li>
               <li><a href="#" className="text-gray-600 hover:text-purple-600 transition-colors">Features</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-purple-600 transition-colors">Pricing</a></li>
+              <li><Link href={`/${locale ?? 'en'}/pricing`} className="text-gray-600 hover:text-purple-600 transition-colors">Pricing</Link></li>
               <li><a href="#" className="text-gray-600 hover:text-purple-600 transition-colors">Contact</a></li>
             </ul>
           </div>
@@ -66,10 +67,10 @@ export default function Footer({ locale }: FooterProps) {
           <div>
             <h3 className="font-semibold text-gray-900 mb-4">Tools</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-600 hover:text-purple-600 transition-colors">Image to Prompt</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-purple-600 transition-colors">Magic Enhance</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-purple-600 transition-colors">AI Describe</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-purple-600 transition-colors">AI Generator</a></li>
+              <li><Link href={`/${locale ?? 'en'}/image-to-prompt`} className="text-gray-600 hover:text-purple-600 transition-colors">Image to Prompt</Link></li>
+              <li><Link href={`/${locale ?? 'en'}/magic-enhance`} className="text-gray-600 hover:text-purple-600 transition-colors">Magic Enhance</Link></li>
+              <li><Link href={`/${locale ?? 'en'}/ai-describe`} className="text-gray-600 hover:text-purple-600 transition-colors">AI Describe</Link></li>
+              <li><Link href={`/${locale ?? 'en'}/ai-image-generator`} className="text-gray-600 hover:text-purple-600 transition-colors">AI Generator</Link></li>
               <li><a href="#" className="text-gray-600 hover:text-purple-600 transition-colors">Tutorials</a></li>
             </ul>
           </div>
