@@ -1,6 +1,6 @@
 import { getServerSession, NextAuthOptions, User } from "next-auth";
 import { KyselyAdapter } from "@auth/kysely-adapter";
-import GitHubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
 
 import type { GetServerSidePropsContext, NextApiRequest, NextApiResponse } from "next";
 
@@ -27,17 +27,18 @@ declare module "next-auth" {
 
 const providers: NextAuthOptions["providers"] = [];
 
-if (env.GITHUB_CLIENT_ID && env.GITHUB_CLIENT_SECRET) {
+// 启用 Google 登录（仅在配置了环境变量时）
+if (env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET) {
   providers.push(
-    GitHubProvider({
-      clientId: env.GITHUB_CLIENT_ID,
-      clientSecret: env.GITHUB_CLIENT_SECRET,
+    GoogleProvider({
+      clientId: env.GOOGLE_CLIENT_ID,
+      clientSecret: env.GOOGLE_CLIENT_SECRET,
       httpOptions: { timeout: 15000 },
     })
   );
 }
 
-// 已移除 EmailProvider，仅保留 GitHub 登录
+// 已移除 GitHub 登录
 
 export const authOptions: NextAuthOptions = {
   session: {
