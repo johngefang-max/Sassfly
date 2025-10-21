@@ -4,7 +4,7 @@ import './globals.css'
 // 预编译的 Tailwind CSS（通过 build:css 生成），确保在 CI/Vercel 环境样式稳定
 import './tw.css'
 import { ErrorBoundary } from '../components'
-// Switched authentication from Clerk to NextAuth; ClerkProvider removed.
+import { AuthProvider } from '../components/AuthProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -34,9 +34,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ErrorBoundary>
-          {children}
-        </ErrorBoundary>
+        <AuthProvider>
+          <ErrorBoundary>
+            {children}
+          </ErrorBoundary>
+        </AuthProvider>
       </body>
     </html>
   )

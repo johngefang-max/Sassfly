@@ -17,3 +17,5 @@ export {
   ErrorBoundary,
   LoadingSpinner
 };
+
+export { AuthProvider } from './AuthProvider';
