@@ -38,8 +38,8 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // 注释掉 workspace，暂时不依赖项目
-  // transpilePackages: ['@saasfly/ui', '@saasfly/auth', '@saasfly/common'],
+  // 编译 monorepo 外部包，保证 Vercel 正确打包
+  transpilePackages: ['@saasfly/auth', '@saasfly/db', '@saasfly/common', '@saasfly/ui'],
 }
 
 module.exports = nextConfig

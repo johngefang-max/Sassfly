@@ -2940,21 +2940,37 @@
 
     "@rollup/plugin-node-resolve/resolve": ["resolve@1.22.10", "", { "dependencies": { "is-core-module": "^2.16.0", "path-parse": "^1.0.7", "supports-preserve-symlinks-flag": "^1.0.0" }, "bin": { "resolve": "bin/resolve" } }, "sha512-NPRy+/ncIMeDlTAsuqwKIiferiawhefFJtkNSW0qZJEqMEb+qBt/77B/jGeeek+F0uOeN05CDa6HXbbIgtVX4w=="],
 
+    "@saasfly/api/@saasfly/db": ["@saasfly/db@file:packages/db", { "dependencies": { "@vercel/postgres-kysely": "0.8.0", "kysely": "0.27.3" }, "devDependencies": { "@saasfly/eslint-config": "file:../../tooling/eslint-config", "@saasfly/prettier-config": "file:../../tooling/prettier-config", "@saasfly/typescript-config": "file:../../tooling/typescript-config", "@types/pg": "8.11.0", "dotenv-cli": "7.3.0", "eslint": "8.57.0", "prettier": "3.2.5", "prisma": "5.9.1", "prisma-kysely": "1.7.1", "typescript": "5.4.5" } }],
+
+    "@saasfly/api/@saasfly/eslint-config": ["@saasfly/eslint-config@file:tooling/eslint-config", { "dependencies": { "@next/eslint-plugin-next": "14.0.1", "@types/eslint": "8.56.7", "@typescript-eslint/eslint-plugin": "7.5.0", "@typescript-eslint/parser": "7.5.0", "eslint-config-prettier": "9.1.0", "eslint-config-turbo": "1.13.2", "eslint-plugin-import": "2.29.1", "eslint-plugin-jsx-a11y": "6.8.0", "eslint-plugin-react": "7.34.1", "eslint-plugin-react-hooks": "4.6.0" }, "devDependencies": { "@saasfly/prettier-config": "file:../prettier-config", "@saasfly/typescript-config": "file:../typescript-config", "eslint": "8.57.0", "typescript": "5.4.5" } }],
+
     "@saasfly/api/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling/prettier-config", { "dependencies": { "@ianvs/prettier-plugin-sort-imports": "4.2.1", "prettier": "3.2.5", "prettier-plugin-tailwindcss": "0.5.13" }, "devDependencies": { "@saasfly/typescript-config": "file:../typescript-config", "typescript": "5.4.5" } }],
 
     "@saasfly/api/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling/typescript-config", {}],
+
+    "@saasfly/auth/@saasfly/db": ["@saasfly/db@file:packages/db", { "dependencies": { "@vercel/postgres-kysely": "0.8.0", "kysely": "0.27.3" }, "devDependencies": { "@saasfly/eslint-config": "file:../../tooling/eslint-config", "@saasfly/prettier-config": "file:../../tooling/prettier-config", "@saasfly/typescript-config": "file:../../tooling/typescript-config", "@types/pg": "8.11.0", "dotenv-cli": "7.3.0", "eslint": "8.57.0", "prettier": "3.2.5", "prisma": "5.9.1", "prisma-kysely": "1.7.1", "typescript": "5.4.5" } }],
+
+    "@saasfly/auth/@saasfly/eslint-config": ["@saasfly/eslint-config@file:tooling/eslint-config", { "dependencies": { "@next/eslint-plugin-next": "14.0.1", "@types/eslint": "8.56.7", "@typescript-eslint/eslint-plugin": "7.5.0", "@typescript-eslint/parser": "7.5.0", "eslint-config-prettier": "9.1.0", "eslint-config-turbo": "1.13.2", "eslint-plugin-import": "2.29.1", "eslint-plugin-jsx-a11y": "6.8.0", "eslint-plugin-react": "7.34.1", "eslint-plugin-react-hooks": "4.6.0" }, "devDependencies": { "@saasfly/prettier-config": "file:../prettier-config", "@saasfly/typescript-config": "file:../typescript-config", "eslint": "8.57.0", "typescript": "5.4.5" } }],
 
     "@saasfly/auth/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling/prettier-config", { "dependencies": { "@ianvs/prettier-plugin-sort-imports": "4.2.1", "prettier": "3.2.5", "prettier-plugin-tailwindcss": "0.5.13" }, "devDependencies": { "@saasfly/typescript-config": "file:../typescript-config", "typescript": "5.4.5" } }],
 
     "@saasfly/auth/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling/typescript-config", {}],
 
+    "@saasfly/auth-proxy/@saasfly/eslint-config": ["@saasfly/eslint-config@file:tooling/eslint-config", { "dependencies": { "@next/eslint-plugin-next": "14.0.1", "@types/eslint": "8.56.7", "@typescript-eslint/eslint-plugin": "7.5.0", "@typescript-eslint/parser": "7.5.0", "eslint-config-prettier": "9.1.0", "eslint-config-turbo": "1.13.2", "eslint-plugin-import": "2.29.1", "eslint-plugin-jsx-a11y": "6.8.0", "eslint-plugin-react": "7.34.1", "eslint-plugin-react-hooks": "4.6.0" }, "devDependencies": { "@saasfly/prettier-config": "file:../prettier-config", "@saasfly/typescript-config": "file:../typescript-config", "eslint": "8.57.0", "typescript": "5.4.5" } }],
+
     "@saasfly/auth-proxy/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling/prettier-config", { "dependencies": { "@ianvs/prettier-plugin-sort-imports": "4.2.1", "prettier": "3.2.5", "prettier-plugin-tailwindcss": "0.5.13" }, "devDependencies": { "@saasfly/typescript-config": "file:../typescript-config", "typescript": "5.4.5" } }],
 
+    "@saasfly/auth-proxy/@saasfly/tailwind-config": ["@saasfly/tailwind-config@file:tooling/tailwind-config", { "dependencies": { "autoprefixer": "^10.4.19", "postcss": "^8.4.38", "tailwindcss": "^3.4.3" }, "devDependencies": { "@saasfly/eslint-config": "file:../eslint-config", "@saasfly/prettier-config": "file:../prettier-config", "@saasfly/typescript-config": "file:../typescript-config", "eslint": "8.57.0", "prettier": "3.2.5", "typescript": "5.4.5" } }],
+
     "@saasfly/auth-proxy/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling/typescript-config", {}],
+
+    "@saasfly/common/@saasfly/eslint-config": ["@saasfly/eslint-config@file:tooling/eslint-config", { "dependencies": { "@next/eslint-plugin-next": "14.0.1", "@types/eslint": "8.56.7", "@typescript-eslint/eslint-plugin": "7.5.0", "@typescript-eslint/parser": "7.5.0", "eslint-config-prettier": "9.1.0", "eslint-config-turbo": "1.13.2", "eslint-plugin-import": "2.29.1", "eslint-plugin-jsx-a11y": "6.8.0", "eslint-plugin-react": "7.34.1", "eslint-plugin-react-hooks": "4.6.0" }, "devDependencies": { "@saasfly/prettier-config": "file:../prettier-config", "@saasfly/typescript-config": "file:../typescript-config", "eslint": "8.57.0", "typescript": "5.4.5" } }],
 
     "@saasfly/common/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling/prettier-config", { "dependencies": { "@ianvs/prettier-plugin-sort-imports": "4.2.1", "prettier": "3.2.5", "prettier-plugin-tailwindcss": "0.5.13" }, "devDependencies": { "@saasfly/typescript-config": "file:../typescript-config", "typescript": "5.4.5" } }],
 
     "@saasfly/common/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling/typescript-config", {}],
+
+    "@saasfly/db/@saasfly/eslint-config": ["@saasfly/eslint-config@file:tooling/eslint-config", { "dependencies": { "@next/eslint-plugin-next": "14.0.1", "@types/eslint": "8.56.7", "@typescript-eslint/eslint-plugin": "7.5.0", "@typescript-eslint/parser": "7.5.0", "eslint-config-prettier": "9.1.0", "eslint-config-turbo": "1.13.2", "eslint-plugin-import": "2.29.1", "eslint-plugin-jsx-a11y": "6.8.0", "eslint-plugin-react": "7.34.1", "eslint-plugin-react-hooks": "4.6.0" }, "devDependencies": { "@saasfly/prettier-config": "file:../prettier-config", "@saasfly/typescript-config": "file:../typescript-config", "eslint": "8.57.0", "typescript": "5.4.5" } }],
 
     "@saasfly/db/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling/prettier-config", { "dependencies": { "@ianvs/prettier-plugin-sort-imports": "4.2.1", "prettier": "3.2.5", "prettier-plugin-tailwindcss": "0.5.13" }, "devDependencies": { "@saasfly/typescript-config": "file:../typescript-config", "typescript": "5.4.5" } }],
 
@@ -2966,15 +2982,25 @@
 
     "@saasfly/prettier-config/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling/typescript-config", {}],
 
+    "@saasfly/stripe/@saasfly/db": ["@saasfly/db@file:packages/db", { "dependencies": { "@vercel/postgres-kysely": "0.8.0", "kysely": "0.27.3" }, "devDependencies": { "@saasfly/eslint-config": "file:../../tooling/eslint-config", "@saasfly/prettier-config": "file:../../tooling/prettier-config", "@saasfly/typescript-config": "file:../../tooling/typescript-config", "@types/pg": "8.11.0", "dotenv-cli": "7.3.0", "eslint": "8.57.0", "prettier": "3.2.5", "prisma": "5.9.1", "prisma-kysely": "1.7.1", "typescript": "5.4.5" } }],
+
+    "@saasfly/stripe/@saasfly/eslint-config": ["@saasfly/eslint-config@file:tooling/eslint-config", { "dependencies": { "@next/eslint-plugin-next": "14.0.1", "@types/eslint": "8.56.7", "@typescript-eslint/eslint-plugin": "7.5.0", "@typescript-eslint/parser": "7.5.0", "eslint-config-prettier": "9.1.0", "eslint-config-turbo": "1.13.2", "eslint-plugin-import": "2.29.1", "eslint-plugin-jsx-a11y": "6.8.0", "eslint-plugin-react": "7.34.1", "eslint-plugin-react-hooks": "4.6.0" }, "devDependencies": { "@saasfly/prettier-config": "file:../prettier-config", "@saasfly/typescript-config": "file:../typescript-config", "eslint": "8.57.0", "typescript": "5.4.5" } }],
+
     "@saasfly/stripe/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling/prettier-config", { "dependencies": { "@ianvs/prettier-plugin-sort-imports": "4.2.1", "prettier": "3.2.5", "prettier-plugin-tailwindcss": "0.5.13" }, "devDependencies": { "@saasfly/typescript-config": "file:../typescript-config", "typescript": "5.4.5" } }],
 
     "@saasfly/stripe/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling/typescript-config", {}],
+
+    "@saasfly/tailwind-config/@saasfly/eslint-config": ["@saasfly/eslint-config@file:tooling/eslint-config", { "dependencies": { "@next/eslint-plugin-next": "14.0.1", "@types/eslint": "8.56.7", "@typescript-eslint/eslint-plugin": "7.5.0", "@typescript-eslint/parser": "7.5.0", "eslint-config-prettier": "9.1.0", "eslint-config-turbo": "1.13.2", "eslint-plugin-import": "2.29.1", "eslint-plugin-jsx-a11y": "6.8.0", "eslint-plugin-react": "7.34.1", "eslint-plugin-react-hooks": "4.6.0" }, "devDependencies": { "@saasfly/prettier-config": "file:../prettier-config", "@saasfly/typescript-config": "file:../typescript-config", "eslint": "8.57.0", "typescript": "5.4.5" } }],
 
     "@saasfly/tailwind-config/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling/prettier-config", { "dependencies": { "@ianvs/prettier-plugin-sort-imports": "4.2.1", "prettier": "3.2.5", "prettier-plugin-tailwindcss": "0.5.13" }, "devDependencies": { "@saasfly/typescript-config": "file:../typescript-config", "typescript": "5.4.5" } }],
 
     "@saasfly/tailwind-config/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling/typescript-config", {}],
 
+    "@saasfly/ui/@saasfly/eslint-config": ["@saasfly/eslint-config@file:tooling/eslint-config", { "dependencies": { "@next/eslint-plugin-next": "14.0.1", "@types/eslint": "8.56.7", "@typescript-eslint/eslint-plugin": "7.5.0", "@typescript-eslint/parser": "7.5.0", "eslint-config-prettier": "9.1.0", "eslint-config-turbo": "1.13.2", "eslint-plugin-import": "2.29.1", "eslint-plugin-jsx-a11y": "6.8.0", "eslint-plugin-react": "7.34.1", "eslint-plugin-react-hooks": "4.6.0" }, "devDependencies": { "@saasfly/prettier-config": "file:../prettier-config", "@saasfly/typescript-config": "file:../typescript-config", "eslint": "8.57.0", "typescript": "5.4.5" } }],
+
     "@saasfly/ui/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling/prettier-config", { "dependencies": { "@ianvs/prettier-plugin-sort-imports": "4.2.1", "prettier": "3.2.5", "prettier-plugin-tailwindcss": "0.5.13" }, "devDependencies": { "@saasfly/typescript-config": "file:../typescript-config", "typescript": "5.4.5" } }],
+
+    "@saasfly/ui/@saasfly/tailwind-config": ["@saasfly/tailwind-config@file:tooling/tailwind-config", { "dependencies": { "autoprefixer": "^10.4.19", "postcss": "^8.4.38", "tailwindcss": "^3.4.3" }, "devDependencies": { "@saasfly/eslint-config": "file:../eslint-config", "@saasfly/prettier-config": "file:../prettier-config", "@saasfly/typescript-config": "file:../typescript-config", "eslint": "8.57.0", "prettier": "3.2.5", "typescript": "5.4.5" } }],
 
     "@saasfly/ui/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling/typescript-config", {}],
 
@@ -3436,23 +3462,85 @@
 
     "@rollup/plugin-commonjs/glob/minimatch": ["minimatch@5.1.6", "", { "dependencies": { "brace-expansion": "^2.0.1" } }, "sha512-lKwV/1brpG6mBUFHtb7NUmtABCb2WZZmm2wNiOA5hAb8VdCS4B3dtMWyvcoViccwAW/COERjXLt0zP1zXUN26g=="],
 
+    "@saasfly/api/@saasfly/db/@saasfly/eslint-config": ["@saasfly/eslint-config@file:tooling\\eslint-config", {}],
+
+    "@saasfly/api/@saasfly/db/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling\\prettier-config", {}],
+
+    "@saasfly/api/@saasfly/db/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
+
+    "@saasfly/api/@saasfly/eslint-config/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling\\prettier-config", {}],
+
+    "@saasfly/api/@saasfly/eslint-config/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
+
     "@saasfly/api/@saasfly/prettier-config/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
+
+    "@saasfly/auth-proxy/@saasfly/eslint-config/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling\\prettier-config", {}],
+
+    "@saasfly/auth-proxy/@saasfly/eslint-config/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
 
     "@saasfly/auth-proxy/@saasfly/prettier-config/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
 
+    "@saasfly/auth-proxy/@saasfly/tailwind-config/@saasfly/eslint-config": ["@saasfly/eslint-config@file:tooling\\eslint-config", {}],
+
+    "@saasfly/auth-proxy/@saasfly/tailwind-config/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling\\prettier-config", {}],
+
+    "@saasfly/auth-proxy/@saasfly/tailwind-config/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
+
+    "@saasfly/auth/@saasfly/db/@saasfly/eslint-config": ["@saasfly/eslint-config@file:tooling\\eslint-config", {}],
+
+    "@saasfly/auth/@saasfly/db/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling\\prettier-config", {}],
+
+    "@saasfly/auth/@saasfly/db/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
+
+    "@saasfly/auth/@saasfly/eslint-config/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling\\prettier-config", {}],
+
+    "@saasfly/auth/@saasfly/eslint-config/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
+
     "@saasfly/auth/@saasfly/prettier-config/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
 
+    "@saasfly/common/@saasfly/eslint-config/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling\\prettier-config", {}],
+
+    "@saasfly/common/@saasfly/eslint-config/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
+
     "@saasfly/common/@saasfly/prettier-config/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
+
+    "@saasfly/db/@saasfly/eslint-config/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling\\prettier-config", {}],
+
+    "@saasfly/db/@saasfly/eslint-config/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
 
     "@saasfly/db/@saasfly/prettier-config/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
 
     "@saasfly/eslint-config/@saasfly/prettier-config/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
 
+    "@saasfly/stripe/@saasfly/db/@saasfly/eslint-config": ["@saasfly/eslint-config@file:tooling\\eslint-config", {}],
+
+    "@saasfly/stripe/@saasfly/db/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling\\prettier-config", {}],
+
+    "@saasfly/stripe/@saasfly/db/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
+
+    "@saasfly/stripe/@saasfly/eslint-config/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling\\prettier-config", {}],
+
+    "@saasfly/stripe/@saasfly/eslint-config/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
+
     "@saasfly/stripe/@saasfly/prettier-config/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
+
+    "@saasfly/tailwind-config/@saasfly/eslint-config/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling\\prettier-config", {}],
+
+    "@saasfly/tailwind-config/@saasfly/eslint-config/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
 
     "@saasfly/tailwind-config/@saasfly/prettier-config/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
 
+    "@saasfly/ui/@saasfly/eslint-config/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling\\prettier-config", {}],
+
+    "@saasfly/ui/@saasfly/eslint-config/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
+
     "@saasfly/ui/@saasfly/prettier-config/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
+
+    "@saasfly/ui/@saasfly/tailwind-config/@saasfly/eslint-config": ["@saasfly/eslint-config@file:tooling\\eslint-config", {}],
+
+    "@saasfly/ui/@saasfly/tailwind-config/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling\\prettier-config", {}],
+
+    "@saasfly/ui/@saasfly/tailwind-config/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
 
     "@saasfly/web/next/@next/env": ["@next/env@14.2.25", "", {}, "sha512-JnzQ2cExDeG7FxJwqAksZ3aqVJrHjFwZQAEJ9gQZSoEhIow7SNoKZzju/AwQ+PLIR4NY8V0rhcVozx/2izDO0w=="],
 
