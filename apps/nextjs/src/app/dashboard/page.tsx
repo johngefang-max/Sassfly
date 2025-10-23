@@ -1,7 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { signOut } from "next-auth/react";
 
@@ -28,7 +28,7 @@ export default function Dashboard() {
     setStats({
       totalLogins: 5,
       lastLogin: new Date().toLocaleDateString(),
-      accountLevel: session.user?.email ? "标准版" : "免费版",
+      accountLevel: session?.user?.email ? "标准版" : "免费版",
       usedFeatures: 3
     });
     setIsLoading(false);
@@ -53,7 +53,7 @@ export default function Dashboard() {
             </div>
             <div className="flex items-center space-x-4">
               <span className="text-sm text-gray-600">
-                欢迎回来，{session.user?.name || session.user?.email}!
+                欢迎回来，{session?.user?.name ?? session?.user?.email ?? ""}!
               </span>
               <button
                 onClick={() => signOut({ callbackUrl: "/login" })}
@@ -77,18 +77,18 @@ export default function Dashboard() {
                 <h3 className="text-lg font-semibold text-gray-900">用户信息</h3>
                 <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
                   <span className="text-white font-bold text-lg">
-                    {session.user?.name?.[0] || "U"}
+                    {session?.user?.name?.[0] ?? "U"}
                   </span>
                 </div>
               </div>
               <div className="space-y-2">
                 <p className="text-sm text-gray-600">
                   <span className="font-medium">姓名：</span>
-                  {session.user?.name || "未设置"}
+                  {session?.user?.name ?? "未设置"}
                 </p>
                 <p className="text-sm text-gray-600">
                   <span className="font-medium">邮箱：</span>
-                  {session.user?.email}
+                  {session?.user?.email ?? ""}
                 </p>
                 <p className="text-sm text-gray-600">
                   <span className="font-medium">账号等级：</span>

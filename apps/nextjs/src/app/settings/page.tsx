@@ -1,7 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { signOut } from "next-auth/react";
 
@@ -29,8 +29,8 @@ export default function Settings() {
 
     // 初始化表单数据
     setFormData({
-      name: session.user?.name || "",
-      email: session.user?.email || "",
+      name: session?.user?.name || "",
+      email: session?.user?.email || "",
       notifications: true,
       darkMode: false,
       language: "zh-CN"
@@ -85,7 +85,7 @@ export default function Settings() {
               <h1 className="text-3xl font-bold text-gray-900">账户设置</h1>
             </div>
             <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-600">{session.user?.email}</span>
+              <span className="text-sm text-gray-600">{session?.user?.email ?? ""}</span>
               <button
                 onClick={() => signOut({ callbackUrl: "/login" })}
                 className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"

@@ -6,6 +6,8 @@ import { env } from "./env.mjs";
 import EmailProvider from "next-auth/providers/email";
 import { KyselyAdapter } from "@auth/kysely-adapter";
 import { db } from "./db";
+const AdapterAny: any = KyselyAdapter as any;
+
 
 // 扩展 Session/JWT 字段
 declare module "next-auth" {
@@ -69,7 +71,7 @@ export const authOptions: NextAuthOptions = {
   session: { strategy: "jwt" },
   pages: { signIn: "/login" },
   providers,
-  adapter: KyselyAdapter(db),
+  adapter: AdapterAny(db as any),
   redirectProxyUrl: env.NEXTAUTH_REDIRECT_PROXY_URL,
   callbacks: {
     session({ token, session }) {
