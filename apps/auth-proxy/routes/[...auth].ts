@@ -1,5 +1,6 @@
 import { Auth } from "@auth/core";
 import GitHub from "@auth/core/providers/github";
+import Google from "@auth/core/providers/google";
 import { eventHandler, toWebRequest } from "h3";
 
 export default eventHandler(async (event) =>
@@ -11,6 +12,10 @@ export default eventHandler(async (event) =>
       GitHub({
         clientId: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      }),
+      Google({
+        clientId: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       }),
     ],
   }),

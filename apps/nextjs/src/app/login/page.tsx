@@ -1,22 +1,15 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-<<<<<<< HEAD
-=======
 import { signIn } from "next-auth/react";
->>>>>>> 9c2a12c (feat: 完善登录页面并配置 NextAuth 认证系统)
 
 type ProviderInfo = { id: string; name: string };
 
 export default function LoginPage() {
   const [providers, setProviders] = useState<Record<string, ProviderInfo> | null>(null);
-<<<<<<< HEAD
-  const [loading, setLoading] = useState(false);
-=======
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [emailLoading, setEmailLoading] = useState(false);
->>>>>>> 9c2a12c (feat: 完善登录页面并配置 NextAuth 认证系统)
 
   useEffect(() => {
     const fetchProviders = async () => {
@@ -25,19 +18,12 @@ export default function LoginPage() {
         const data = await res.json();
         setProviders(data);
       } catch (e) {
-<<<<<<< HEAD
-        // 网络或 API 出错时，保持为 null，UI 会显示可点击的占位按钮
-=======
->>>>>>> 9c2a12c (feat: 完善登录页面并配置 NextAuth 认证系统)
         setProviders(null);
       }
     };
     fetchProviders();
   }, []);
 
-<<<<<<< HEAD
-  const signInHref = (provider: string) => `/api/auth/signin?provider=${provider}&callbackUrl=/`;
-=======
   const handleOAuthSignIn = async (provider: string) => {
     setLoading(true);
     try {
@@ -75,26 +61,10 @@ export default function LoginPage() {
       setEmailLoading(false);
     }
   };
->>>>>>> 9c2a12c (feat: 完善登录页面并配置 NextAuth 认证系统)
 
   const ProviderButton = ({ provider }: { provider: "google" | "github" }) => {
     const isConfigured = !!providers?.[provider];
-    const baseClass =
-<<<<<<< HEAD
-      "w-full inline-flex items-center justify-center gap-2 rounded-md py-2 text-sm font-medium transition-colors";
-    const activeClass = provider === "google"
-      ? "bg-blue-600 text-white hover:bg-blue-700"
-      : "bg-gray-900 text-white hover:bg-black";
-    const disabledClass = "bg-gray-200 text-gray-500 cursor-not-allowed";
-
-    if (isConfigured || providers === null) {
-      // providers === null 时，允许用户点击占位按钮尝试登录
-      return (
-        <a href={signInHref(provider)} className={`${baseClass} ${activeClass}`}>
-          {provider === "github" ? "GitHub" : "Google"}
-        </a>
-=======
-      "w-full inline-flex items-center justify-center gap-2 rounded-lg py-3 text-sm font-semibold transition-all duration-200 shadow-sm";
+    const baseClass = "w-full inline-flex items-center justify-center gap-2 rounded-lg py-3 text-sm font-semibold transition-all duration-200 shadow-sm";
     const activeClass = provider === "google"
       ? "bg-white text-gray-900 border-2 border-gray-200 hover:border-blue-500 hover:shadow-md"
       : "bg-gray-900 text-white hover:bg-black hover:shadow-lg";
@@ -123,83 +93,17 @@ export default function LoginPage() {
           {icon}
           {provider === "github" ? "使用 GitHub 登录" : "使用 Google 登录"}
         </button>
->>>>>>> 9c2a12c (feat: 完善登录页面并配置 NextAuth 认证系统)
       );
     }
     return (
       <button className={`${baseClass} ${disabledClass}`} disabled>
-<<<<<<< HEAD
-        {provider === "github" ? "GitHub" : "Google"}
-=======
         {icon}
         {provider === "github" ? "GitHub (未配置)" : "Google (未配置)"}
->>>>>>> 9c2a12c (feat: 完善登录页面并配置 NextAuth 认证系统)
       </button>
     );
   };
 
   return (
-<<<<<<< HEAD
-    <div className="min-h-screen grid md:grid-cols-2 bg-gradient-to-br from-white to-violet-50">
-      {/* 左侧登录卡片 */}
-      <div className="flex items-center justify-center p-8">
-        <div className="w-full max-w-md space-y-6">
-          <div className="flex items-center gap-2">
-            <div className="h-9 w-9 rounded-lg bg-violet-600 text-white flex items-center justify-center">🔒</div>
-            <h1 className="text-2xl font-semibold">Login</h1>
-          </div>
-
-          <div>
-            <h2 className="text-xl font-bold">欢迎回来</h2>
-            <p className="mt-1 text-sm text-gray-600">输入您的电子邮箱以登录您的账户</p>
-          </div>
-
-          <div className="space-y-2">
-            <label htmlFor="email" className="text-sm font-medium">Email</label>
-            <input
-              id="email"
-              type="email"
-              placeholder="name@example.com"
-              className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500"
-            />
-            <button
-              className="w-full rounded-md bg-violet-600 text-white py-2 hover:bg-violet-700 transition-colors"
-              type="button"
-              onClick={() => alert("仅为展示用途：当前未启用邮箱登录")}
-            >
-              用电子邮件登录
-            </button>
-          </div>
-
-          <div className="relative my-4">
-            <div className="absolute inset-0 flex items-center" aria-hidden="true">
-              <div className="w-full border-t border-gray-200" />
-            </div>
-            <div className="relative flex justify-center">
-              <span className="bg-white px-2 text-sm text-gray-500">或者快捷使用</span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3">
-            <ProviderButton provider="github" />
-            <ProviderButton provider="google" />
-          </div>
-
-          {/* 提示：当某个 Provider 未配置时显示文案 */}
-          {providers && !providers.google && (
-            <p className="text-xs text-gray-500">暂未配置 Google 登录，请联系管理员。</p>
-          )}
-          {providers && !providers.github && (
-            <p className="text-xs text-gray-500">暂未配置 GitHub 登录（可选）。</p>
-          )}
-
-          <div className="text-sm text-gray-600">
-            Don't have an account? <a href="#" className="underline">Sign up</a>
-          </div>
-          <p className="text-xs text-gray-400">
-            By continuing, you agree to our <a href="#" className="underline">Terms of Service</a> and <a href="#" className="underline">Privacy Policy</a>
-          </p>
-=======
     <div className="min-h-screen grid md:grid-cols-2 bg-gradient-to-br from-slate-50 via-white to-violet-50">
       {/* 左侧登录卡片 */}
       <div className="flex items-center justify-center p-6 md:p-8">
@@ -250,16 +154,12 @@ export default function LoginPage() {
           {/* OAuth 登录按钮 */}
           <div className="space-y-3">
             <ProviderButton provider="google" />
-            <ProviderButton provider="github" />
           </div>
 
           {/* 提示信息 */}
-          {providers && (!providers.google || !providers.github) && (
+          {providers && !providers.google && (
             <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
-              <p className="text-xs text-amber-800">
-                {!providers.google && "Google 登录暂未配置。"}
-                {!providers.github && "GitHub 登录暂未配置。"}
-              </p>
+              <p className="text-xs text-amber-800">Google 登录暂未配置。</p>
             </div>
           )}
 
@@ -282,36 +182,10 @@ export default function LoginPage() {
               </a>
             </p>
           </div>
->>>>>>> 9c2a12c (feat: 完善登录页面并配置 NextAuth 认证系统)
         </div>
       </div>
 
       {/* 右侧欢迎与特性展示 */}
-<<<<<<< HEAD
-      <div className="hidden md:flex items-center justify-center p-8 bg-gradient-to-br from-violet-600 to-fuchsia-600">
-        <div className="max-w-lg text-white space-y-6">
-          <div>
-            <h2 className="text-3xl font-bold">Welcome to</h2>
-            <h3 className="text-3xl font-extrabold">Your Platform</h3>
-            <p className="mt-2 text-sm opacity-90">Sign in to access your dashboard and manage your applications</p>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="rounded-lg bg-white/10 p-4 backdrop-blur-sm">
-              <div className="text-xl">⚡</div>
-              <div className="text-sm font-semibold mt-1">Fast & Reliable</div>
-            </div>
-            <div className="rounded-lg bg-white/10 p-4 backdrop-blur-sm">
-              <div className="text-xl">🛡️</div>
-              <div className="text-sm font-semibold mt-1">Secure</div>
-            </div>
-            <div className="rounded-lg bg-white/10 p-4 backdrop-blur-sm">
-              <div className="text-xl">💻</div>
-              <div className="text-sm font-semibold mt-1">Developer Friendly</div>
-            </div>
-            <div className="rounded-lg bg-white/10 p-4 backdrop-blur-sm">
-              <div className="text-xl">🌍</div>
-              <div className="text-sm font-semibold mt-1">Global Scale</div>
-=======
       <div className="hidden md:flex items-center justify-center p-8 bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-600 relative overflow-hidden">
         {/* 背景装饰 */}
         <div className="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,transparent,black)]" />
@@ -371,7 +245,6 @@ export default function LoginPage() {
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
               <span>数据加密传输与存储</span>
->>>>>>> 9c2a12c (feat: 完善登录页面并配置 NextAuth 认证系统)
             </div>
           </div>
         </div>

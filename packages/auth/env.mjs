@@ -21,6 +21,7 @@ export const env = createEnv({
     RESEND_FROM: z.string().optional(),
     ADMIN_EMAIL: z.string().optional(),
     IS_DEBUG: z.string().optional(),
+    NEXTAUTH_REDIRECT_PROXY_URL: z.string().url().optional(),
   },
   client: {
     // 客户端可选：当前项目未强制使用该变量，避免因未配置导致构建失败
@@ -40,5 +41,6 @@ export const env = createEnv({
     RESEND_FROM: process.env.RESEND_FROM,
     ADMIN_EMAIL: process.env.ADMIN_EMAIL,
     IS_DEBUG: process.env.IS_DEBUG,
+    NEXTAUTH_REDIRECT_PROXY_URL: process.env.NEXTAUTH_REDIRECT_PROXY_URL,
   },
 });

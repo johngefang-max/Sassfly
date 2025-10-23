@@ -5,18 +5,15 @@
   "scripts": {
     "build:css": "tailwindcss -c ./tailwind.config.js -i ./src/app/globals.css -o ./src/app/tw.css --minify",
     "build": "npm run build:css && next build",
-    "dev": "next dev",
+    "dev": "set NODE_OPTIONS=--dns-result-order=ipv4first && next dev",
     "lint": "next lint",
     "start": "next start",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.20.0",
-    "@saasfly/ui": "workspace:*",
-    "@saasfly/auth": "workspace:*",
-    "@saasfly/common": "workspace:*",
     "next-auth": "4.24.7",
-    "next": "14.2.3",
+    "next": "14.2.25",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwindcss": "^3.4.3",
@@ -30,8 +27,7 @@
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.19",
     "eslint": "8.57.0",
-    "eslint-config-next": "14.2.3",
-    "@saasfly/tailwind-config": "workspace:*",
+    "eslint-config-next": "14.2.25",
     "postcss": "^8.4.38",
     "typescript": "5.4.5"
   }

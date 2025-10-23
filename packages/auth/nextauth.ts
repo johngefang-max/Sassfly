@@ -3,6 +3,9 @@ import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 import type { GetServerSidePropsContext, NextApiRequest, NextApiResponse } from "next";
 import { env } from "./env.mjs";
+import EmailProvider from "next-auth/providers/email";
+import { KyselyAdapter } from "@auth/kysely-adapter";
+import { db } from "./db";
 
 // 扩展 Session/JWT 字段
 declare module "next-auth" {
@@ -20,12 +23,35 @@ declare module "next-auth" {
 // 动态注册 Provider
 const providers: NextAuthOptions["providers"] = [];
 
+// 开发模式下启用邮箱登录，避免无 Provider 导致配置错误
+if (env.IS_DEBUG === "true") {
+  providers.push(
+    EmailProvider({
+      from: env.RESEND_FROM || "dev@example.com",
+      maxAge: 24 * 60 * 60,
+      // 在本地开发环境中直接输出验证链接，而不实际发送邮件
+      sendVerificationRequest({ identifier, url }) {
+        console.log("[DEV] Email sign-in link for", identifier, "=>", url);
+      },
+    })
+  );
+}
+
 if (env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET) {
   providers.push(
     GoogleProvider({
       clientId: env.GOOGLE_CLIENT_ID,
       clientSecret: env.GOOGLE_CLIENT_SECRET,
-      httpOptions: { timeout: 15000 },
+      authorization: {
+        url: "https://accounts.google.com/o/oauth2/v2/auth",
+      },
+      token: {
+        url: "https://oauth2.googleapis.com/token",
+      },
+      userinfo: {
+        url: "https://openidconnect.googleapis.com/v1/userinfo",
+      },
+      httpOptions: { timeout: 60000 },
     })
   );
 }
@@ -43,6 +69,8 @@ export const authOptions: NextAuthOptions = {
   session: { strategy: "jwt" },
   pages: { signIn: "/login" },
   providers,
+  adapter: KyselyAdapter(db),
+  redirectProxyUrl: env.NEXTAUTH_REDIRECT_PROXY_URL,
   callbacks: {
     session({ token, session }) {
       if (token && session.user) {

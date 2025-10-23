@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx next dev:*)",
+      "Bash(npm install:*)",
+      "Bash(corepack enable)",
+      "Bash(npx next@14.2.3 build --no-lint)",
+      "Bash(npm run dev)",
+      "Bash(bun run dev:web:*)",
+      "Bash(npm run dev:web)",
+      "Bash(rm -rf .next)",
+      "Bash(bun install)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
