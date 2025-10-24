@@ -9,7 +9,13 @@
       "Bash(bun run dev:web:*)",
       "Bash(npm run dev:web)",
       "Bash(rm -rf .next)",
-      "Bash(bun install)"
+      "Bash(bun install)",
+      "Bash(bun install --fix)",
+      "Bash(ping:*)",
+      "Bash(set PORT=3000)",
+      "Bash(netstat -ano)",
+      "Bash(findstr :3000)",
+      "Bash(taskkill /PID 14584 /F)"
     ],
     "deny": [],
     "ask": []

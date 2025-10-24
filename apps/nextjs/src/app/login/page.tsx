@@ -24,13 +24,13 @@ export default function LoginPage() {
     fetchProviders();
   }, []);
 
-  const handleOAuthSignIn = async (provider: string) => {
-    setLoading(true);
+  const handleOAuthSignIn = async (providerId: string) => {
     try {
-      await signIn(provider, { callbackUrl: "/" });
+      setLoading(true);
+      await signIn(providerId, { callbackUrl: "/" });
     } catch (error) {
-      console.error("登录失败:", error);
-      alert("登录失败，请重试");
+      console.error("OAuth sign-in failed:", error);
+      alert("第三方登录失败，请稍后重试");
     } finally {
       setLoading(false);
     }
@@ -154,6 +154,7 @@ export default function LoginPage() {
           {/* OAuth 登录按钮 */}
           <div className="space-y-3">
             <ProviderButton provider="google" />
+            <ProviderButton provider="github" />
           </div>
 
           {/* 提示信息 */}

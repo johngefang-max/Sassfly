@@ -6,7 +6,16 @@ import { env } from "./env.mjs";
 import EmailProvider from "next-auth/providers/email";
 import { KyselyAdapter } from "@auth/kysely-adapter";
 import { db } from "./db";
+import { HttpsProxyAgent } from "https-proxy-agent";
+
 const AdapterAny: any = KyselyAdapter as any;
+
+const proxyUrl = process.env.HTTPS_PROXY || process.env.HTTP_PROXY || process.env.ALL_PROXY;
+const proxyAgent = proxyUrl ? new HttpsProxyAgent(proxyUrl) : undefined;
+// 统一 httpOptions：仅在检测到代理时附加 agent
+const providerHttpOptions = proxyAgent ? { timeout: 30000, agent: proxyAgent } : { timeout: 30000 };
+const globalHttpOptions = proxyAgent ? { timeout: 300000, agent: proxyAgent } : { timeout: 300000 };
+
 
 
 // 扩展 Session/JWT 字段
@@ -45,15 +54,14 @@ if (env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET) {
       clientId: env.GOOGLE_CLIENT_ID,
       clientSecret: env.GOOGLE_CLIENT_SECRET,
       authorization: {
-        url: "https://accounts.google.com/o/oauth2/v2/auth",
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code",
+          scope: "openid email profile"
+        },
       },
-      token: {
-        url: "https://oauth2.googleapis.com/token",
-      },
-      userinfo: {
-        url: "https://openidconnect.googleapis.com/v1/userinfo",
-      },
-      httpOptions: { timeout: 60000 },
+      httpOptions: providerHttpOptions,
     })
   );
 }
@@ -63,46 +71,41 @@ if (env.GITHUB_CLIENT_ID && env.GITHUB_CLIENT_SECRET) {
     GitHubProvider({
       clientId: env.GITHUB_CLIENT_ID,
       clientSecret: env.GITHUB_CLIENT_SECRET,
+      // 移除代理配置以避免潜在问题
+      httpOptions: providerHttpOptions,
     })
   );
 }
 
 export const authOptions: NextAuthOptions = {
   session: { strategy: "jwt" },
-  pages: { signIn: "/login" },
+  pages: { 
+    signIn: "/login", 
+    error: "/login",
+    signOut: "/login"
+  },
   providers,
   adapter: AdapterAny(db as any),
-  redirectProxyUrl: env.NEXTAUTH_REDIRECT_PROXY_URL,
+  secret: env.NEXTAUTH_SECRET,
+  debug: env.IS_DEBUG === "true",
+  httpOptions: globalHttpOptions,
   callbacks: {
-    session({ token, session }) {
-      if (token && session.user) {
-        session.user.id = (token.id as string) ?? (token.sub as string);
-        session.user.name = token.name;
-        session.user.email = token.email;
-        session.user.image = token.picture;
-        session.user.isAdmin = (token.isAdmin as boolean) ?? false;
-      }
+    async signIn({ user, account, profile }) {
+      return true;
+    },
+    async redirect({ url, baseUrl }) {
+      // 确保重定向到正确的域名
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      else if (new URL(url).origin === baseUrl) return url;
+      return baseUrl;
+    },
+    async session({ session, token }) {
       return session;
     },
     async jwt({ token, user }) {
-      const emailFromToken = token?.email ?? "";
-      const email = user?.email ?? emailFromToken;
-      let isAdmin = false;
-      if (env.ADMIN_EMAIL) {
-        const adminEmails = env.ADMIN_EMAIL.split(",");
-        if (email) isAdmin = adminEmails.includes(email);
-      }
-      if (user) {
-        token.id = (user.id as string) ?? (token.sub as string);
-        token.name = user.name ?? token.name;
-        token.email = user.email ?? token.email;
-        token.picture = user.image ?? token.picture;
-      }
-      token.isAdmin = isAdmin;
       return token;
     },
-  },
-  debug: env.IS_DEBUG === "true",
+  }
 };
 
 // Server 端使用

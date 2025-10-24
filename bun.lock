@@ -20,6 +20,7 @@
     },
     "apps/auth-proxy": {
       "name": "@saasfly/auth-proxy",
+      "version": "0.1.0",
       "dependencies": {
         "@auth/core": "0.31.0",
       },
@@ -92,6 +93,7 @@
         "@auth/kysely-adapter": "0.4.2",
         "@saasfly/db": "file:../db",
         "@t3-oss/env-nextjs": "0.8.0",
+        "https-proxy-agent": "7.0.2",
         "next": "14.2.3",
         "next-auth": "4.24.7",
         "react": "^18.3.1",
@@ -1718,7 +1720,7 @@
 
     "http-shutdown": ["http-shutdown@1.2.2", "", {}, "sha512-S9wWkJ/VSY9/k4qcjG318bqJNruzE4HySUhFYknwmu6LBP97KLLfwNf+n4V1BHurvFNkSKLFnK/RsuUnRTf9Vw=="],
 
-    "https-proxy-agent": ["https-proxy-agent@7.0.6", "", { "dependencies": { "agent-base": "^7.1.2", "debug": "4" } }, "sha512-vK9P5/iUfdl95AI+JVyUuIcVtd4ofvtrOr3HNtM2yxC9bnMbEdp3x01OhQNnjb8IJYi38VlTE3mBXwcfvywuSw=="],
+    "https-proxy-agent": ["https-proxy-agent@7.0.2", "", { "dependencies": { "agent-base": "^7.0.2", "debug": "4" } }, "sha512-NmLNjm6ucYwtcUmL7JQC1ZQ57LmHP4lT15FQ8D61nak1rO6DH+fz5qNK2Ap5UN4ZapYICE3/0KodcLYSPsPbaA=="],
 
     "httpxy": ["httpxy@0.1.7", "", {}, "sha512-pXNx8gnANKAndgga5ahefxc++tJvNL87CXoRwxn1cJE2ZkWEojF3tNfQIEhZX/vfpt+wzeAzpUI4qkediX1MLQ=="],
 
@@ -2940,6 +2942,8 @@
 
     "@rollup/plugin-node-resolve/resolve": ["resolve@1.22.10", "", { "dependencies": { "is-core-module": "^2.16.0", "path-parse": "^1.0.7", "supports-preserve-symlinks-flag": "^1.0.0" }, "bin": { "resolve": "bin/resolve" } }, "sha512-NPRy+/ncIMeDlTAsuqwKIiferiawhefFJtkNSW0qZJEqMEb+qBt/77B/jGeeek+F0uOeN05CDa6HXbbIgtVX4w=="],
 
+    "@saasfly/api/@saasfly/auth": ["@saasfly/auth@file:packages/auth", { "dependencies": { "@auth/kysely-adapter": "0.4.2", "@saasfly/db": "file:../db", "@t3-oss/env-nextjs": "0.8.0", "next": "14.2.3", "next-auth": "4.24.7", "react": "^18.3.1", "react-dom": "^18.3.1", "zod": "3.22.4" }, "devDependencies": { "@saasfly/eslint-config": "file:../../tooling/eslint-config", "@saasfly/prettier-config": "file:../../tooling/prettier-config", "@saasfly/typescript-config": "file:../../tooling/typescript-config", "eslint": "8.57.0", "prettier": "3.2.5", "typescript": "5.4.5" } }],
+
     "@saasfly/api/@saasfly/db": ["@saasfly/db@file:packages/db", { "dependencies": { "@vercel/postgres-kysely": "0.8.0", "kysely": "0.27.3" }, "devDependencies": { "@saasfly/eslint-config": "file:../../tooling/eslint-config", "@saasfly/prettier-config": "file:../../tooling/prettier-config", "@saasfly/typescript-config": "file:../../tooling/typescript-config", "@types/pg": "8.11.0", "dotenv-cli": "7.3.0", "eslint": "8.57.0", "prettier": "3.2.5", "prisma": "5.9.1", "prisma-kysely": "1.7.1", "typescript": "5.4.5" } }],
 
     "@saasfly/api/@saasfly/eslint-config": ["@saasfly/eslint-config@file:tooling/eslint-config", { "dependencies": { "@next/eslint-plugin-next": "14.0.1", "@types/eslint": "8.56.7", "@typescript-eslint/eslint-plugin": "7.5.0", "@typescript-eslint/parser": "7.5.0", "eslint-config-prettier": "9.1.0", "eslint-config-turbo": "1.13.2", "eslint-plugin-import": "2.29.1", "eslint-plugin-jsx-a11y": "6.8.0", "eslint-plugin-react": "7.34.1", "eslint-plugin-react-hooks": "4.6.0" }, "devDependencies": { "@saasfly/prettier-config": "file:../prettier-config", "@saasfly/typescript-config": "file:../typescript-config", "eslint": "8.57.0", "typescript": "5.4.5" } }],
@@ -2969,6 +2973,8 @@
     "@saasfly/common/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling/prettier-config", { "dependencies": { "@ianvs/prettier-plugin-sort-imports": "4.2.1", "prettier": "3.2.5", "prettier-plugin-tailwindcss": "0.5.13" }, "devDependencies": { "@saasfly/typescript-config": "file:../typescript-config", "typescript": "5.4.5" } }],
 
     "@saasfly/common/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling/typescript-config", {}],
+
+    "@saasfly/common/@saasfly/ui": ["@saasfly/ui@file:packages/ui", { "dependencies": { "@radix-ui/react-accessible-icon": "next", "@radix-ui/react-accordion": "next", "@radix-ui/react-alert-dialog": "next", "@radix-ui/react-aspect-ratio": "next", "@radix-ui/react-avatar": "next", "@radix-ui/react-checkbox": "next", "@radix-ui/react-collapsible": "next", "@radix-ui/react-context-menu": "next", "@radix-ui/react-dialog": "next", "@radix-ui/react-dropdown-menu": "next", "@radix-ui/react-hover-card": "next", "@radix-ui/react-label": "next", "@radix-ui/react-menubar": "next", "@radix-ui/react-navigation-menu": "next", "@radix-ui/react-popover": "next", "@radix-ui/react-progress": "next", "@radix-ui/react-radio-group": "next", "@radix-ui/react-scroll-area": "next", "@radix-ui/react-select": "next", "@radix-ui/react-separator": "next", "@radix-ui/react-slider": "next", "@radix-ui/react-slot": "next", "@radix-ui/react-switch": "next", "@radix-ui/react-tabs": "next", "@radix-ui/react-toast": "next", "@radix-ui/react-toggle": "next", "@radix-ui/react-toggle-group": "next", "@radix-ui/react-tooltip": "next", "@react-email/button": "0.0.15", "@react-email/components": "0.0.19", "@react-email/html": "0.0.8", "@react-three/drei": "9.103.0", "@react-three/fiber": "8.16.1", "@tsparticles/engine": "3.3.0", "@tsparticles/react": "3.0.0", "@tsparticles/slim": "3.3.0", "class-variance-authority": "0.7.0", "clsx": "2.1.0", "cmdk": "0.2.1", "lucide-react": "^0.379.0", "tailwind-merge": "1.14.0", "three": "0.163.0", "three-globe": "2.31.0", "zod": "3.22.4" }, "devDependencies": { "@saasfly/eslint-config": "file:../../tooling/eslint-config", "@saasfly/prettier-config": "file:../../tooling/prettier-config", "@saasfly/tailwind-config": "file:../../tooling/tailwind-config", "@saasfly/typescript-config": "file:../../tooling/typescript-config", "@tanstack/react-table": "8.17.0", "@types/react": "^18.3.2", "date-fns": "3.3.1", "eslint": "8.57.0", "prettier": "3.2.5", "react": "^18.3.1", "react-day-picker": "8.10.0", "react-dom": "^18.3.1", "react-hook-form": "7.50.1", "tailwindcss": "^3.4.3", "tailwindcss-animate": "^1.0.7", "typescript": "5.4.5" } }],
 
     "@saasfly/db/@saasfly/eslint-config": ["@saasfly/eslint-config@file:tooling/eslint-config", { "dependencies": { "@next/eslint-plugin-next": "14.0.1", "@types/eslint": "8.56.7", "@typescript-eslint/eslint-plugin": "7.5.0", "@typescript-eslint/parser": "7.5.0", "eslint-config-prettier": "9.1.0", "eslint-config-turbo": "1.13.2", "eslint-plugin-import": "2.29.1", "eslint-plugin-jsx-a11y": "6.8.0", "eslint-plugin-react": "7.34.1", "eslint-plugin-react-hooks": "4.6.0" }, "devDependencies": { "@saasfly/prettier-config": "file:../prettier-config", "@saasfly/typescript-config": "file:../typescript-config", "eslint": "8.57.0", "typescript": "5.4.5" } }],
 
@@ -3272,6 +3278,8 @@
 
     "p-filter/p-map": ["p-map@2.1.0", "", {}, "sha512-y3b8Kpd8OAN444hxfBbFfj1FY/RjtTd8tzYwhUqNYXx0fXx2iX4maP4Qr6qhIKbQXI02wTLAda4fYUbDagTUFw=="],
 
+    "pac-proxy-agent/https-proxy-agent": ["https-proxy-agent@7.0.6", "", { "dependencies": { "agent-base": "^7.1.2", "debug": "4" } }, "sha512-vK9P5/iUfdl95AI+JVyUuIcVtd4ofvtrOr3HNtM2yxC9bnMbEdp3x01OhQNnjb8IJYi38VlTE3mBXwcfvywuSw=="],
+
     "path-scurry/lru-cache": ["lru-cache@10.4.3", "", {}, "sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ=="],
 
     "pkg-dir/find-up": ["find-up@4.1.0", "", { "dependencies": { "locate-path": "^5.0.0", "path-exists": "^4.0.0" } }, "sha512-PpOwAdQ/YlXQ2vj8a3h8IipDuYRi3wceVQQGYWxNINccq40Anw7BlsEXCMbt1Zt+OLA6Fq9suIpIWD0OsnISlw=="],
@@ -3281,6 +3289,8 @@
     "postcss-import/resolve": ["resolve@1.22.10", "", { "dependencies": { "is-core-module": "^2.16.0", "path-parse": "^1.0.7", "supports-preserve-symlinks-flag": "^1.0.0" }, "bin": { "resolve": "bin/resolve" } }, "sha512-NPRy+/ncIMeDlTAsuqwKIiferiawhefFJtkNSW0qZJEqMEb+qBt/77B/jGeeek+F0uOeN05CDa6HXbbIgtVX4w=="],
 
     "prompts/kleur": ["kleur@3.0.3", "", {}, "sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w=="],
+
+    "proxy-agent/https-proxy-agent": ["https-proxy-agent@7.0.6", "", { "dependencies": { "agent-base": "^7.1.2", "debug": "4" } }, "sha512-vK9P5/iUfdl95AI+JVyUuIcVtd4ofvtrOr3HNtM2yxC9bnMbEdp3x01OhQNnjb8IJYi38VlTE3mBXwcfvywuSw=="],
 
     "r-json/w-json": ["w-json@1.3.10", "", {}, "sha512-XadVyw0xE+oZ5FGApXsdswv96rOhStzKqL53uSe5UaTadABGkWIg1+DTx8kiZ/VqTZTBneoL0l65RcPe4W3ecw=="],
 
@@ -3444,8 +3454,6 @@
 
     "@prisma/internals/@prisma/fetch-engine/http-proxy-agent": ["http-proxy-agent@7.0.0", "", { "dependencies": { "agent-base": "^7.1.0", "debug": "^4.3.4" } }, "sha512-+ZT+iBxVUQ1asugqnD6oWoRiS25AkjNfG085dKJGtGxkdwLQrMKU5wJr2bOOFAXzKcTuqq+7fZlTMgG3SRfIYQ=="],
 
-    "@prisma/internals/@prisma/fetch-engine/https-proxy-agent": ["https-proxy-agent@7.0.2", "", { "dependencies": { "agent-base": "^7.0.2", "debug": "4" } }, "sha512-NmLNjm6ucYwtcUmL7JQC1ZQ57LmHP4lT15FQ8D61nak1rO6DH+fz5qNK2Ap5UN4ZapYICE3/0KodcLYSPsPbaA=="],
-
     "@prisma/internals/archiver/archiver-utils": ["archiver-utils@2.1.0", "", { "dependencies": { "glob": "^7.1.4", "graceful-fs": "^4.2.0", "lazystream": "^1.0.0", "lodash.defaults": "^4.2.0", "lodash.difference": "^4.5.0", "lodash.flatten": "^4.4.0", "lodash.isplainobject": "^4.0.6", "lodash.union": "^4.6.0", "normalize-path": "^3.0.0", "readable-stream": "^2.0.0" } }, "sha512-bEL/yUb/fNNiNTuUz979Z0Yg5L+LzLxGJz8x79lYmR54fmTIb6ob/hNQgkQnIUDWIFjZVQwl9Xs356I6BAMHfw=="],
 
     "@prisma/internals/archiver/buffer-crc32": ["buffer-crc32@0.2.13", "", {}, "sha512-VO9Ht/+p3SN7SKWqcrgEzjGbRSJYTx+Q1pTQC0wrWqHx0vpJraQ6GtHx8tvcg1rlK1byhU5gccxgOgj7B0TDkQ=="],
@@ -3461,6 +3469,14 @@
     "@react-email/heading/@radix-ui/react-slot/@radix-ui/react-compose-refs": ["@radix-ui/react-compose-refs@1.0.1", "", { "dependencies": { "@babel/runtime": "^7.13.10" }, "peerDependencies": { "@types/react": "*", "react": "^16.8 || ^17.0 || ^18.0" }, "optionalPeers": ["@types/react"] }, "sha512-fDSBgd44FKHa1FRMU59qBMPFcl2PZE+2nmqunj+BWFyYYjnhIDWL2ItDs3rrbJDQOtzt5nIebLCQc4QRfz6LJw=="],
 
     "@rollup/plugin-commonjs/glob/minimatch": ["minimatch@5.1.6", "", { "dependencies": { "brace-expansion": "^2.0.1" } }, "sha512-lKwV/1brpG6mBUFHtb7NUmtABCb2WZZmm2wNiOA5hAb8VdCS4B3dtMWyvcoViccwAW/COERjXLt0zP1zXUN26g=="],
+
+    "@saasfly/api/@saasfly/auth/@saasfly/db": ["@saasfly/db@file:packages\\db", {}],
+
+    "@saasfly/api/@saasfly/auth/@saasfly/eslint-config": ["@saasfly/eslint-config@file:tooling\\eslint-config", {}],
+
+    "@saasfly/api/@saasfly/auth/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling\\prettier-config", {}],
+
+    "@saasfly/api/@saasfly/auth/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
 
     "@saasfly/api/@saasfly/db/@saasfly/eslint-config": ["@saasfly/eslint-config@file:tooling\\eslint-config", {}],
 
@@ -3503,6 +3519,14 @@
     "@saasfly/common/@saasfly/eslint-config/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
 
     "@saasfly/common/@saasfly/prettier-config/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
+
+    "@saasfly/common/@saasfly/ui/@saasfly/eslint-config": ["@saasfly/eslint-config@file:tooling\\eslint-config", {}],
+
+    "@saasfly/common/@saasfly/ui/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling\\prettier-config", {}],
+
+    "@saasfly/common/@saasfly/ui/@saasfly/tailwind-config": ["@saasfly/tailwind-config@file:tooling\\tailwind-config", {}],
+
+    "@saasfly/common/@saasfly/ui/@saasfly/typescript-config": ["@saasfly/typescript-config@file:tooling\\typescript-config", {}],
 
     "@saasfly/db/@saasfly/eslint-config/@saasfly/prettier-config": ["@saasfly/prettier-config@file:tooling\\prettier-config", {}],
 
