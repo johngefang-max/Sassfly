@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 type ProviderInfo = { id: string; name: string };
 
@@ -10,6 +11,10 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [emailLoading, setEmailLoading] = useState(false);
+  const router = useRouter();
+
+  // 读取客户端可选环境变量（未配置则默认使用 johnfang@gmail.com）
+  const devEmail = process.env.NEXT_PUBLIC_DEV_LOGIN_EMAIL || "johnfang@gmail.com";
 
   useEffect(() => {
     const fetchProviders = async () => {
@@ -24,13 +29,56 @@ export default function LoginPage() {
     fetchProviders();
   }, []);
 
+  // 已登录自动跳转到仪表盘，避免已登录用户停留在登录页
+  useEffect(() => {
+    let cancelled = false;
+    const checkSession = async () => {
+      try {
+        const res = await fetch("/api/auth/session", { cache: "no-store" });
+        if (!cancelled && res.ok) {
+          const data = await res.json();
+          if (data?.user) {
+            router.replace("/dashboard");
+          }
+        }
+      } catch {
+        // ignore
+      }
+    };
+    checkSession();
+    return () => { cancelled = true; };
+  }, [router]);
+
   const handleOAuthSignIn = async (providerId: string) => {
     try {
       setLoading(true);
-      await signIn(providerId, { callbackUrl: "/" });
+      await signIn(providerId, { callbackUrl: "/dashboard" });
     } catch (error) {
       console.error("OAuth sign-in failed:", error);
       alert("第三方登录失败，请稍后重试");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // 开发快速登录（仅当后端暴露 credentials provider 时显示按钮）
+  const handleDevSignIn = async () => {
+    try {
+      setLoading(true);
+      const result = await signIn("credentials", {
+        email: devEmail,
+        callbackUrl: "/dashboard",
+        redirect: false,
+      });
+      if (result?.ok) {
+        router.replace("/dashboard");
+      } else {
+        console.error("开发快速登录失败:", result);
+        alert("开发快速登录失败，请检查配置");
+      }
+    } catch (error) {
+      console.error("开发快速登录异常:", error);
+      alert("开发快速登录异常，请检查配置");
     } finally {
       setLoading(false);
     }
@@ -46,7 +94,7 @@ export default function LoginPage() {
     try {
       const result = await signIn("email", {
         email,
-        callbackUrl: "/",
+        callbackUrl: "/dashboard",
         redirect: false,
       });
       if (result?.error) {
@@ -150,6 +198,18 @@ export default function LoginPage() {
               <span className="bg-white px-4 text-sm text-gray-500 font-medium">或使用第三方登录</span>
             </div>
           </div>
+
+          {/* 开发快速登录按钮：当 providers 中存在 credentials 时显示 */}
+          {providers?.credentials && (
+            <button
+              onClick={handleDevSignIn}
+              disabled={loading}
+              className={`w-full rounded-lg bg-yellow-500 text-white py-3 font-semibold transition-all duration-200 shadow-md hover:shadow-lg ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+              title={`以 ${devEmail} 免验证登录（开发专用）`}
+            >
+              使用管理员邮箱快速登录（开发）
+            </button>
+          )}
 
           {/* OAuth 登录按钮 */}
           <div className="space-y-3">

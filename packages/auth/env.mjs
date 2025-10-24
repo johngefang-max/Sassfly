@@ -22,10 +22,15 @@ export const env = createEnv({
     ADMIN_EMAIL: z.string().optional(),
     IS_DEBUG: z.string().optional(),
     NEXTAUTH_REDIRECT_PROXY_URL: z.string().url().optional(),
+    // 开发免验证登录配置
+    DEV_LOGIN_ENABLED: z.string().optional(),
+    DEV_LOGIN_EMAIL: z.string().optional(),
   },
   client: {
     // 客户端可选：当前项目未强制使用该变量，避免因未配置导致构建失败
     NEXT_PUBLIC_APP_URL: z.string().url().optional(),
+    // 开发免验证登录在客户端显示的邮箱
+    NEXT_PUBLIC_DEV_LOGIN_EMAIL: z.string().optional(),
   },
   runtimeEnv: {
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
@@ -42,5 +47,9 @@ export const env = createEnv({
     ADMIN_EMAIL: process.env.ADMIN_EMAIL,
     IS_DEBUG: process.env.IS_DEBUG,
     NEXTAUTH_REDIRECT_PROXY_URL: process.env.NEXTAUTH_REDIRECT_PROXY_URL,
+    // 开发免验证登录配置
+    DEV_LOGIN_ENABLED: process.env.DEV_LOGIN_ENABLED,
+    DEV_LOGIN_EMAIL: process.env.DEV_LOGIN_EMAIL,
+    NEXT_PUBLIC_DEV_LOGIN_EMAIL: process.env.NEXT_PUBLIC_DEV_LOGIN_EMAIL,
   },
 });

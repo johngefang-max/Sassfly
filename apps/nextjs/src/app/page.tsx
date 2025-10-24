@@ -1,6 +1,10 @@
 import { redirect } from 'next/navigation'
+import { getCurrentUser } from '@saasfly/auth'
 
-export default function HomePage() {
-  // 重定向到登录页面
+export default async function HomePage() {
+  const user = await getCurrentUser()
+  if (user) {
+    redirect('/dashboard')
+  }
   redirect('/login')
 }
