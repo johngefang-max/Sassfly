@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "build:css": "tailwindcss -c ./tailwind.config.js -i ./src/app/globals.css -o ./src/app/tw.css --minify",
-    "build": "npm run build:css && next build",
+    "build:db": "cd ../../packages/db && bun run db:generate",
+    "build": "npm run build:db && npm run build:css && next build",
     "dev": "set NODE_OPTIONS=--dns-result-order=ipv4first && next dev",
     "lint": "next lint",
     "start": "next start",
