@@ -11,6 +11,9 @@
     "start": "next start",
     "typecheck": "tsc --noEmit"
   },
+  "overrides": {
+    "nodemailer": "^7.0.7"
+  },
   "dependencies": {
     "@auth/core": "^0.41.1",
     "@clerk/nextjs": "^6.20.0",

@@ -20,7 +20,8 @@
       "Bash(bun add replicate)",
       "Bash(bun add -D check-dependency-version-consistency)",
       "Bash(yarn add --dev check-dependency-version-consistency)",
-      "Bash(npx check-dependency-version-consistency . --fix)"
+      "Bash(npx check-dependency-version-consistency . --fix)",
+      "Bash(npx check-dependency-version-consistency .)"
     ],
     "deny": [],
     "ask": []
