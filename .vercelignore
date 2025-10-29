@@ -41,4 +41,3 @@ apps/auth-proxy
 # Other packages not needed for web deployment
 packages/api
 packages/stripe
-packages/db/prisma
