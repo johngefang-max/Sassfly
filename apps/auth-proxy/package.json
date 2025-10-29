@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@auth/core": "^0.41.1",
-    "next": "14.2.33",
-    "next-auth": "4.24.12"
+    "next": "^14.2.33",
+    "next-auth": "^4.24.12"
   },
   "devDependencies": {
     "@saasfly/eslint-config": "0.0.1",

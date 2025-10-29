@@ -19,14 +19,14 @@
     "with-env": "dotenv -e ../../.env.local --"
   },
   "dependencies": {
-    "@auth/core": "0.41.1",
-    "@auth/kysely-adapter": "1.11.1",
-    "@react-email/components": "0.5.7",
+    "@auth/core": "^0.41.1",
+    "@auth/kysely-adapter": "^1.11.1",
+    "@react-email/components": "^0.5.7",
     "@vercel/postgres-kysely": "^0.10.0",
     "kysely": "0.27.3",
-    "next": "14.2.33",
-    "next-auth": "4.24.12",
-    "nitropack": "2.12.9"
+    "next": "^14.2.33",
+    "next-auth": "^4.24.12",
+    "nitropack": "^2.12.9"
   },
   "devDependencies": {
     "@saasfly/eslint-config": "0.0.1",

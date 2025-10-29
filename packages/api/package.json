@@ -25,7 +25,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@saasfly/auth": "file:../auth",
+    "@saasfly/auth": "0.1.0",
     "@saasfly/db": "0.1.0",
     "@trpc/client": "10.44.1",
     "@trpc/server": "10.44.1",
