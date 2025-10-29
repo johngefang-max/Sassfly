@@ -11,7 +11,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@auth/core": "^0.41.1",
+    "@auth/core": "0.34.2",
     "@auth/kysely-adapter": "^1.11.1",
     "@saasfly/db": "0.1.0",
     "@t3-oss/env-nextjs": "0.8.0",
