@@ -5,6 +5,7 @@ import { Sparkles, Wand2, Eye, Palette } from 'lucide-react'
 import { Header, FeatureCard, CTASection, Footer, AnimatedSection } from '../../components'
 import { useResponsive } from '../../hooks'
 import { getTranslations, type Locale } from '../../lib/i18n'
+import { useSession, signOut } from 'next-auth/react'
 
 export default function LocalePage({
   params: { locale }
@@ -12,6 +13,7 @@ export default function LocalePage({
   params: { locale: Locale }
 }) {
   const { isMobile } = useResponsive()
+  const { data: session } = useSession()
   const t = getTranslations(locale)
 
   return (
@@ -50,7 +52,7 @@ export default function LocalePage({
             {t.subtitle}
           </motion.p>
           
-          <motion.div 
+          <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

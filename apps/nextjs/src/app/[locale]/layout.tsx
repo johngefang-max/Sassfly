@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { ErrorBoundary } from '../../components'
+import { AuthProvider } from '../../components/AuthProvider'
 import { locales, type Locale } from '../../lib/i18n'
 import { notFound } from 'next/navigation'
 
@@ -52,7 +53,9 @@ export default function LocaleLayout({
   // Rendering them here can cause build/export errors.
   return (
     <ErrorBoundary>
-      {children}
+      <AuthProvider>
+        {children}
+      </AuthProvider>
     </ErrorBoundary>
   )
 }

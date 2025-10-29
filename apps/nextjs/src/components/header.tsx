@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { Menu, X, Search, User, ChevronDown, Globe } from 'lucide-react'
 import { getTranslations, type Locale } from '../lib/i18n'
 import Link from 'next/link'
+import { useSession, signOut } from 'next-auth/react'
 
 interface HeaderProps {
   locale?: Locale
@@ -16,6 +17,7 @@ const Header = ({ locale = 'en' }: HeaderProps) => {
   const [showLanguageSwitch, setShowLanguageSwitch] = useState(false)
   // 新增：工具菜单的显隐状态，支持点击与悬浮两种触发方式
   const [isToolsOpen, setIsToolsOpen] = useState(false)
+  const { data: session } = useSession()
   const t = getTranslations(locale)
 
   return (
@@ -77,6 +79,7 @@ const Header = ({ locale = 'en' }: HeaderProps) => {
                 <Link href={`/${locale}/magic-enhance`} className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600">{t.magicEnhance}</Link>
                 <Link href={`/${locale}/ai-describe`} className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600">{t.aiDescribe}</Link>
                 <Link href={`/${locale}/ai-image-generator`} className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600">{t.aiGenerator}</Link>
+                <Link href={`/${locale}/text-to-video`} className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600">{t.textToVideo}</Link>
               </div>
             </div>
             <Link href={`/${locale}/pricing`} className="text-gray-700 hover:text-purple-600 transition-colors">{t.pricing}</Link>
@@ -114,12 +117,26 @@ const Header = ({ locale = 'en' }: HeaderProps) => {
             <button className="p-2 text-gray-600 hover:text-purple-600 transition-colors">
               <Search className="w-5 h-5" />
             </button>
-            <button className="p-2 text-gray-600 hover:text-purple-600 transition-colors">
-              <User className="w-5 h-5" />
-            </button>
-            <Link href="/login" className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors">
-              {t.login}
-            </Link>
+            {session ? (
+              <div className="flex items-center space-x-2">
+                <Link
+                  href="/dashboard"
+                  className="bg-purple-100 text-purple-600 px-3 py-2 rounded-lg hover:bg-purple-200 transition-colors text-sm font-medium"
+                >
+                  仪表盘
+                </Link>
+                <button
+                  onClick={() => signOut({ callbackUrl: "/login" })}
+                  className="bg-red-100 text-red-600 px-3 py-2 rounded-lg hover:bg-red-200 transition-colors text-sm font-medium"
+                >
+                  退出
+                </button>
+              </div>
+            ) : (
+              <Link href="/login" className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors">
+                {t.login}
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -149,17 +166,32 @@ const Header = ({ locale = 'en' }: HeaderProps) => {
               <Link href={`/${locale}/magic-enhance`} className="text-gray-700 hover:text-purple-600 transition-colors">{t.magicEnhance}</Link>
               <Link href={`/${locale}/ai-describe`} className="text-gray-700 hover:text-purple-600 transition-colors">{t.aiDescribe}</Link>
               <Link href={`/${locale}/ai-image-generator`} className="text-gray-700 hover:text-purple-600 transition-colors">{t.aiGenerator}</Link>
+              <Link href={`/${locale}/text-to-video`} className="text-gray-700 hover:text-purple-600 transition-colors">{t.textToVideo}</Link>
               <Link href={`/${locale}/pricing`} className="text-gray-700 hover:text-purple-600 transition-colors">{t.pricing}</Link>
               <div className="flex items-center space-x-4 pt-4 border-t border-gray-200">
                 <button className="p-2 text-gray-600 hover:text-purple-600 transition-colors">
                   <Search className="w-5 h-5" />
                 </button>
-                <button className="p-2 text-gray-600 hover:text-purple-600 transition-colors">
-                  <User className="w-5 h-5" />
-                </button>
-                <Link href="/login" className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors">
-                  Login
-                </Link>
+                {session ? (
+                  <div className="flex flex-col space-y-2 w-full">
+                    <Link
+                      href="/dashboard"
+                      className="bg-purple-100 text-purple-600 px-3 py-2 rounded-lg hover:bg-purple-200 transition-colors text-sm font-medium text-center"
+                    >
+                      仪表盘
+                    </Link>
+                    <button
+                      onClick={() => signOut({ callbackUrl: "/login" })}
+                      className="bg-red-100 text-red-600 px-3 py-2 rounded-lg hover:bg-red-200 transition-colors text-sm font-medium"
+                    >
+                      退出登录
+                    </button>
+                  </div>
+                ) : (
+                  <Link href="/login" className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors w-full text-center">
+                    Login
+                  </Link>
+                )}
               </div>
             </div>
           </motion.div>

@@ -43,21 +43,31 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50">
       {/* Header */}
-      <header className="bg-white shadow border-b border-gray-200">
+      <header className="bg-white/80 backdrop-blur-md shadow-sm border-b border-purple-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center space-x-4">
-              <h1 className="text-3xl font-bold text-gray-900">会员仪表盘</h1>
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">会员仪表盘</h1>
             </div>
             <div className="flex items-center space-x-4">
               <span className="text-sm text-gray-600">
                 欢迎回来，{session?.user?.name ?? session?.user?.email ?? ""}!
               </span>
               <button
+                onClick={() => {
+                  // 检测当前页面语言或默认使用中文
+                  const currentLang = navigator.language.includes('zh') ? 'zh' : 'en';
+                  router.push(`/${currentLang}`);
+                }}
+                className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105"
+              >
+                返回主页
+              </button>
+              <button
                 onClick={() => signOut({ callbackUrl: "/login" })}
-                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
+                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105"
               >
                 退出登录
               </button>

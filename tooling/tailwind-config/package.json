@@ -19,9 +19,9 @@
     "tailwindcss": "^3.4.3"
   },
   "devDependencies": {
-    "@saasfly/eslint-config": "file:../eslint-config",
-    "@saasfly/prettier-config": "file:../prettier-config",
-    "@saasfly/typescript-config": "file:../typescript-config",
+    "@saasfly/eslint-config": "0.0.1",
+    "@saasfly/prettier-config": "0.1.0",
+    "@saasfly/typescript-config": "0.0.1",
     "eslint": "8.57.0",
     "prettier": "3.2.5",
     "typescript": "5.4.5"

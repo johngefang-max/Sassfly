@@ -29,7 +29,7 @@ export default function LoginPage() {
     fetchProviders();
   }, []);
 
-  // 已登录自动跳转到仪表盘，避免已登录用户停留在登录页
+  // 已登录自动跳转到主页，避免已登录用户停留在登录页
   useEffect(() => {
     let cancelled = false;
     const checkSession = async () => {
@@ -38,7 +38,8 @@ export default function LoginPage() {
         if (!cancelled && res.ok) {
           const data = await res.json();
           if (data?.user) {
-            router.replace("/dashboard");
+            // 跳转到根路径，由服务端根据语言偏好重定向到对应主页
+            router.replace("/");
           }
         }
       } catch {
@@ -52,7 +53,8 @@ export default function LoginPage() {
   const handleOAuthSignIn = async (providerId: string) => {
     try {
       setLoading(true);
-      await signIn(providerId, { callbackUrl: "/dashboard" });
+      // 登录完成回到主页（根路径会根据语言重定向到 /zh 或 /en）
+      await signIn(providerId, { callbackUrl: "/" });
     } catch (error) {
       console.error("OAuth sign-in failed:", error);
       alert("第三方登录失败，请稍后重试");
@@ -67,11 +69,11 @@ export default function LoginPage() {
       setLoading(true);
       const result = await signIn("credentials", {
         email: devEmail,
-        callbackUrl: "/dashboard",
+        callbackUrl: "/",
         redirect: false,
       });
       if (result?.ok) {
-        router.replace("/dashboard");
+        router.replace("/");
       } else {
         console.error("开发快速登录失败:", result);
         alert("开发快速登录失败，请检查配置");
@@ -94,7 +96,7 @@ export default function LoginPage() {
     try {
       const result = await signIn("email", {
         email,
-        callbackUrl: "/dashboard",
+        callbackUrl: "/",
         redirect: false,
       });
       if (result?.error) {

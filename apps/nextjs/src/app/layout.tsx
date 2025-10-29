@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="zh-CN">
+    <html>
       <body className="font-sans">
         <AuthProvider>
           {children}

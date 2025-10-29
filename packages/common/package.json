@@ -21,13 +21,13 @@
     "format": "prettier --check '**/*.{mjs,ts,json}' "
   },
   "dependencies": {
-    "@saasfly/ui": "file:../ui",
+    "@saasfly/ui": "0.1.0",
     "resend": "2.1.0"
   },
   "devDependencies": {
-    "@saasfly/eslint-config": "file:../../tooling/eslint-config",
-    "@saasfly/prettier-config": "file:../../tooling/prettier-config",
-    "@saasfly/typescript-config": "file:../../tooling/typescript-config",
+    "@saasfly/eslint-config": "0.0.1",
+    "@saasfly/prettier-config": "0.1.0",
+    "@saasfly/typescript-config": "0.0.1",
     "eslint": "8.57.0",
     "prettier": "3.2.5",
     "typescript": "5.4.5"

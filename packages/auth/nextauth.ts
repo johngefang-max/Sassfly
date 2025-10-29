@@ -12,10 +12,21 @@ import CredentialsProvider from "next-auth/providers/credentials";
 const AdapterAny: any = KyselyAdapter as any;
 
 const proxyUrl = process.env.HTTPS_PROXY || process.env.HTTP_PROXY || process.env.ALL_PROXY;
-const proxyAgent = proxyUrl ? new HttpsProxyAgent(proxyUrl) : undefined;
-// 统一 httpOptions：仅在检测到代理时附加 agent
-const providerHttpOptions = proxyAgent ? { timeout: 30000, agent: proxyAgent } : { timeout: 30000 };
-const globalHttpOptions = proxyAgent ? { timeout: 300000, agent: proxyAgent } : { timeout: 300000 };
+let proxyAgent = undefined;
+
+// // 在Bun环境下暂时禁用代理，因为兼容性问题
+// if (proxyUrl) {
+//   try {
+//     proxyAgent = new HttpsProxyAgent(proxyUrl);
+//   } catch (error) {
+//     console.warn('Failed to create proxy agent:', error);
+//     proxyAgent = undefined;
+//   }
+// }
+
+// 统一 httpOptions：暂时禁用代理
+const providerHttpOptions = { timeout: 30000 };
+const globalHttpOptions = { timeout: 300000 };
 
 
 
@@ -119,6 +130,13 @@ export const authOptions: NextAuthOptions = {
       return true;
     },
     async redirect({ url, baseUrl }) {
+      // 登录后重定向到主页，根据用户语言偏好重定向
+      if (url.includes("/dashboard") || url === baseUrl) {
+        // 检测用户语言偏好，默认英文
+        const userAgent = typeof window !== 'undefined' ? window.navigator.language : '';
+        const preferredLang = userAgent.includes('zh') ? 'zh' : 'en';
+        return `${baseUrl}/${preferredLang}`;
+      }
       // 确保重定向到正确的域名
       if (url.startsWith("/")) return `${baseUrl}${url}`;
       else if (new URL(url).origin === baseUrl) return url;
