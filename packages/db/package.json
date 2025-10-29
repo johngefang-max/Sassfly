@@ -19,7 +19,7 @@
     "with-env": "dotenv -e ../../.env.local --"
   },
   "dependencies": {
-    "@auth/core": "0.34.2",
+    "@auth/core": "^0.41.1",
     "@auth/kysely-adapter": "^1.11.1",
     "@react-email/components": "^0.5.7",
     "@vercel/postgres-kysely": "^0.10.0",

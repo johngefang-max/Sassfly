@@ -12,7 +12,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@auth/core": "0.34.2",
+    "@auth/core": "^0.41.1",
     "@clerk/nextjs": "^6.20.0",
     "framer-motion": "^11.2.6",
     "lucide-react": "^0.379.0",
